@@ -1,0 +1,23 @@
+{
+  "googleAnalyticsId": "UA-XXXXXXX-X",
+  "serverUrl": "http://127.0.0.1:3000",
+
+  "githubClientId": "fd456de3073614438d94",
+  "githubClientSecret": "e3a5bcc1e4fb9bf8e57df1aa498caed1b078af68",
+
+  "session": {
+    "secret": "7h9905af-a472-41f3-8d14-a5av58asf7kad",
+    "cookie": {
+      "domain": "localhost",
+      "secure": false
+    }
+  },
+
+  "mongo": {
+    "host": "5.101.117.249",
+    "port": "27017",
+    "database": "syncTrello",
+    "user": "syncTrelloAdmin",
+    "pwd": "syncTrelloPassword"
+  }
+}

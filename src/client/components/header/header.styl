@@ -1,0 +1,48 @@
+.header
+    display block
+    border-bottom: 1px solid $gray.border
+
+    &__container
+        max-width $contentWidth
+        margin 0 auto
+        padding 0 15px
+
+        clearfix()
+
+
+    &__logo
+        float left
+        width 180px
+
+
+    &__auth
+        float right
+        width 180px
+
+
+    &__items
+        margin 0 200px
+
+
+    &__item
+        display inline-block
+        padding 10px
+
+
+        &.is-active
+            color red
+
+
+    &__profile
+        white-space nowrap
+
+        &-item
+            padding-left 10px
+            display inline-block
+            vertical-align middle
+
+            &_name
+                max-width 120px
+                ellipsis()
+
+

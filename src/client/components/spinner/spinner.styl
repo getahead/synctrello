@@ -1,0 +1,53 @@
+$offset = 90
+$duration = 1.5s
+
+.spinner
+    display inline-block
+    vertical-align top
+    color: $colors.blue
+
+    &_size
+        &_s
+            size 16px
+
+        &_m
+            size 20px
+
+        &_l
+            size 24px
+
+        &_xl
+            size 30px
+
+        &_xxl
+            size 50px
+
+    svg
+        animation rotator $duration linear infinite
+        size 100%
+
+    circle
+        stroke-dasharray $offset
+        stroke-dashoffset 0
+        stroke currentColor
+        transform-origin center
+        animation dash $duration ease-in-out infinite
+        
+        
+@keyframes rotator {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+@keyframes dash {
+    0% { stroke-dashoffset: $offset; }
+    50% {
+        stroke-dashoffset: ($offset/5);
+        transform:rotate(90deg);
+    }
+    100% {
+        stroke-dashoffset: $offset;
+        transform:rotate(360deg);
+    }
+}

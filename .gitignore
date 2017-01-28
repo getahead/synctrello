@@ -1,0 +1,11 @@
+node_modules/
+build/
+.idea
+.DS_Store
+atlassian-ide-plugin.xml
+*.ipr
+*.iws
+*.iml
+
+webpack-assets.json
+config.json

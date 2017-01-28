@@ -1,0 +1,76 @@
+$this = '.button'
+
+{$this}
+    display inline-block
+    vertical-align top
+    font-family inherit
+    font-weight 400
+    line-height 1.2
+    text-decoration none
+    text-align center
+    white-space nowrap
+    cursor pointer
+    position relative
+    border 1px solid transparent
+    border-radius 2px
+    user-select none
+    -webkit-tap-highlight-color transparent
+
+    &:hover
+    &:focus
+    &:active
+        text-decoration none
+        outline none
+
+    &:disabled
+    &_disabled
+        cursor default
+        opacity .4
+
+    &_size
+        &_m
+            height 50px
+            min-width 50px
+            padding 16px 14px
+            font-size 14px
+
+
+    &_width_full
+        width 100%
+
+
+    &_theme
+        &_black
+            mixin-button-theme($colors.black)
+
+
+    & > &__icon
+        display inline-block
+        margin-right 10px
+        vertical-align middle
+
+
+    &__label
+        display inline-block
+        font-weight 600
+        text-transform uppercase
+        vertical-align middle
+
+
+    .spinner
+        absolute left 50% top 50%
+        size 50%
+        color inherit
+        display none
+        transform translate(-50%, -50%)
+
+    &_pending .spinner
+        display inline-block
+
+    &_pending &__label
+    &_pending &__icon
+        visibility hidden
+
+
+    &_pending
+        pointer-events none
