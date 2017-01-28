@@ -1,13 +1,13 @@
 {
   "apps" : [{
-    "name": "git-starter",
+    "name": "synctrello",
     "script": "src/server/index.js",
     "instances" : 2,
     "exec_mode" : "cluster",
     "kill_timeout" : 30000,
     "env": {
       "NODE_ENV": "production",
-      "HTTPS": "true"
+      "PORT": 3001
     }
   }]
 }

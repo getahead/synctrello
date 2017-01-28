@@ -37,6 +37,6 @@ app.use(userMiddleware);
 app.use(routes);
 app.get('*', errorHandler);
 
-app.listen(config.port, () => {
+app.listen(config.port, '0.0.0.0', () => {
   console.log(`Server started at http://localhost:${config.port}`);
 });
