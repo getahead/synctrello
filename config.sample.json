@@ -2,8 +2,9 @@
   "googleAnalyticsId": "UA-XXXXXXX-X",
   "serverUrl": "http://127.0.0.1:3000",
 
-  "githubClientId": "fd456de3073614438d94",
-  "githubClientSecret": "e3a5bcc1e4fb9bf8e57df1aa498caed1b078af68",
+  "API_URL": "https://trello.com/",
+  "TRELLO_API_KEY": "8946c831b15b335bf71eec9733a09ff7",
+  "TRELLO_SECRET": "f9cdeb4b8dbb0a6da90c9db4e98105fee2aefdccef1ba52c80c2fcfdfff9bbfd",
 
   "session": {
     "secret": "7h9905af-a472-41f3-8d14-a5av58asf7kad",
@@ -16,8 +17,8 @@
   "mongo": {
     "host": "5.101.117.249",
     "port": "27017",
-    "database": "syncTrello",
+    "database": "synctrello",
     "user": "syncTrelloAdmin",
-    "pwd": "syncTrelloPassword"
+    "pwd": "syncTrelloAdminPassword"
   }
 }

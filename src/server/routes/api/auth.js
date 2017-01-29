@@ -7,17 +7,21 @@ import UserModel from '../../model/User.model';
 
 const router = express.Router();
 
-router.get('/github', (req, res) => {
-  req.session.state = uuidV4();
+router.get('/trello', (req, res) => {
 
+  //https://trello.com/1/authorize?response_type=token&key=8946c831b15b335bf71eec9733a09ff7&return_url=https%3A%2F%2Fdevelopers.trello.com&callback_method=postMessage&scope=read%2Cwrite%2Caccount&expiration=never&name=Sandbox+Trello+Application
   return res.json({
     success: true,
     data: {
-      url: URI('https://github.com/login/oauth/authorize')
+      url: URI(config.API_URL).pathname('/1/authorize/')
         .query({
-          client_id: config.githubClientId,
-          scope: ['repo', 'user'].join(','),
-          state: req.session.state,
+          key: config.TRELLO_API_KEY,
+          expiration: 'never',
+          name: 'SyncoBot',
+          response_type: 'token',
+          return_url: `${config.serverUrl}/action/social-login/finish/`,
+          callback_method: `fragment`,
+          // scope: ['repo', 'user'].join(',')
         })
         .toString()
     }
