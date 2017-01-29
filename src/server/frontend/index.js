@@ -30,9 +30,6 @@ const settleAllWithTimeout = promises => Promise
 
 const initialState = createInitialState();
 
-const getHost = req =>
-  `${req.headers['x-forwarded-proto'] || req.protocol}://${req.headers.host}`;
-
 const createStore = (req, res) => configureStore({
   req,
   initialState: {
@@ -40,7 +37,7 @@ const createStore = (req, res) => configureStore({
     auth: initialState.auth.update('user', user => user.merge(res.user)),
     device: {
       ...initialState.device,
-      host: getHost(req),
+      host: req.origin,
     },
     intl: {
       ...initialState.intl,

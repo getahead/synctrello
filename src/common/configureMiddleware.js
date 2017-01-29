@@ -11,14 +11,12 @@ const injectMiddleware = deps => ({ dispatch, getState }) => next => action =>
 
 const configureMiddleware = (initialState, platformDeps, platformMiddleware, req) => {
 
-  const serverUrl = process.env.SERVER_URL || initialState.config.serverUrl;
-
   const middleware = [
     injectMiddleware({
       ...platformDeps,
       getUid: () => platformDeps.uuid.v4(),
       now: () => Date.now(),
-      fetch: createFetch(serverUrl, req)
+      fetch: createFetch(initialState.device.host)
     }),
     promiseMiddleware({
       promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR']

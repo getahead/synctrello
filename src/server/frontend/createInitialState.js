@@ -13,8 +13,7 @@ const createInitialState = () => ({
 //    ...configReducer(),
     appName: config.appName,
     appVersion: config.appVersion,
-    sentryUrl: config.sentryUrl,
-    serverUrl: config.serverUrl
+    sentryUrl: config.sentryUrl
   },
   device: {}, //deviceReducer(),
   intl: {

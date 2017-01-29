@@ -10,7 +10,6 @@ nconf.defaults({
   isProduction: process.env.NODE_ENV === 'production',
   locales: ['en', 'ru'],
   port: process.env.PORT || 3000,
-  serverUrl: `http://localhost:${process.env.PORT || 3000}`,
   remoteHotReload: false,
   sentryUrl: '',
 });

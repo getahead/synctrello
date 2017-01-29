@@ -8,17 +8,19 @@ import bodyParser from 'body-parser';
 
 import mongoose from './lib/mongoose';
 import userMiddleware from './middleware/userMiddleware';
+import serverUrlMiddleware from './middleware/originUrlMiddleware';
 import routes from './routes';
 
 const app = express();
 
 app.enable('strict routing');
+app.use(serverUrlMiddleware);
 app.use(express.static('public'));
 
 app.use(cookieParser());
 app.use(session({
   secret: config.session.secret,
-  key: 'gitstarter_sid',
+  key: 'synctrello_sid',
   proxy: false,
   resave: true,
   saveUninitialized: true,
