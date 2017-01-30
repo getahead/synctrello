@@ -12,11 +12,11 @@ const repositoriesReducer = (state = new State(), action = {}) => {
   switch (action.type) {
     case actions.GET_USER_INFO_START:
     case actions.GET_GITHUB_USER_TOKEN_START:
-    case actions.GITHUB_OAUTH_START: {
+    case actions.TRELLO_OAUTH_START: {
       return state.set('status', 'pending');
     }
 
-    case actions.GITHUB_OAUTH_SUCCESS: {
+    case actions.TRELLO_OAUTH_SUCCESS: {
       if (!action.payload.success) {
         // continue;
       }
@@ -28,7 +28,7 @@ const repositoriesReducer = (state = new State(), action = {}) => {
 
     case actions.GET_USER_INFO_ERROR:
     case actions.GET_GITHUB_USER_TOKEN_ERROR:
-    case actions.GITHUB_OAUTH_ERROR: {
+    case actions.TRELLO_OAUTH_ERROR: {
       return state
         .set('error', action.payload.error)
         .set('status', '');

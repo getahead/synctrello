@@ -1,6 +1,6 @@
-export const GITHUB_OAUTH_START = 'GITHUB_OAUTH_START';
-export const GITHUB_OAUTH_SUCCESS = 'GITHUB_OAUTH_SUCCESS';
-export const GITHUB_OAUTH_ERROR = 'GITHUB_OAUTH_ERROR';
+export const TRELLO_OAUTH_START = 'TRELLO_OAUTH_START';
+export const TRELLO_OAUTH_SUCCESS = 'TRELLO_OAUTH_SUCCESS';
+export const TRELLO_OAUTH_ERROR = 'TRELLO_OAUTH_ERROR';
 
 export const GET_GITHUB_USER_TOKEN_START = 'GET_GITHUB_USER_TOKEN_START';
 export const GET_GITHUB_USER_TOKEN_SUCCESS = 'GET_GITHUB_USER_TOKEN_SUCCESS';
@@ -18,10 +18,10 @@ export const getUserInfo = () => ({fetch}) => ({
   }
 });
 
-export const gitHubOauth = () => ({fetch}) => ({
-  type: 'GITHUB_OAUTH',
+export const trelloOauth = () => ({fetch}) => ({
+  type: 'TRELLO_OAUTH',
   payload: {
-    promise: fetch('/api/v1/auth/github', {credentials: 'include'})
+    promise: fetch('/api/v1/auth/trello')
       .then(res => res.json())
   }
 });
@@ -29,7 +29,7 @@ export const gitHubOauth = () => ({fetch}) => ({
 export const getGithubUserToken = () => ({fetch, dispatch}) => ({
   type: 'GET_GITHUB_USER_TOKEN',
   payload: {
-    promise: fetch('/api/v1/auth/github-token', {credentials: 'include'})
+    promise: fetch('/api/v1/auth/trello-token', {credentials: 'include'})
       .then(res => res.json())
       .then((res) => {
         dispatch(getUserInfo());
