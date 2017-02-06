@@ -2,7 +2,7 @@ import './sign-in.styl';
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {trelloOauth, getGithubUserToken} from '../../../common/auth/actions';
+import {trelloOauth, getUserInfo} from '../../../common/auth/actions';
 import {windowOpen} from '../../lib/popup';
 
 import Avatar from '../avatar/Avatar';
@@ -17,7 +17,6 @@ const oAuthPopupOpen = (authorize, getUserInfo) => {
         oAuthPopUp = windowOpen(res.value.data.url, 'Sign in with Trello');
 
         window.addEventListener('message', (event) => {
-          console.log(event.data)
           getUserInfo(event.data);
           return oAuthPopUp.close();
         });
@@ -26,13 +25,13 @@ const oAuthPopupOpen = (authorize, getUserInfo) => {
     });
 };
 
-const SignIn = ({status, user, trelloOauth, getGithubUserToken}) =>
+const SignIn = ({status, profile, trelloOauth, getUserInfo}) =>
   <div className="sign-in">
     <div className="sign-in__header">
       Sign in with your existing GitHub account
     </div>
     <div className="sign-in__avatar">
-      <Avatar user={user} size="l" />
+      <Avatar user={profile} size="l" />
     </div>
     <div className="sign-in__button">
       <Button
@@ -41,19 +40,19 @@ const SignIn = ({status, user, trelloOauth, getGithubUserToken}) =>
         label="Sign in with Trello"
         size="m"
         pending={status === 'pending'}
-        onClick={() => oAuthPopupOpen(trelloOauth, getGithubUserToken)}
+        onClick={() => oAuthPopupOpen(trelloOauth, getUserInfo)}
       />
     </div>
   </div>;
 
 SignIn.propTypes = {
   trelloOauth: React.PropTypes.func.isRequired,
-  getGithubUserToken: React.PropTypes.func.isRequired,
+  getUserInfo: React.PropTypes.func.isRequired,
   status: React.PropTypes.string.isRequired,
-  user: React.PropTypes.object
+  profile: React.PropTypes.object.isRequired
 };
 
 export default connect(state => ({
-  user: state.auth.user,
+  profile: state.auth.profile,
   status: state.auth.status
-}), {trelloOauth, getGithubUserToken})(SignIn);
+}), {trelloOauth, getUserInfo})(SignIn);

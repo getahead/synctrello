@@ -11,7 +11,7 @@ function ensureServerUrl(serverUrl, input) {
 export default function createFetch(serverUrl, req) {
   return (input, init = {}) => {
     input = ensureServerUrl(serverUrl, input);
-    if (req && URI(input).host() === URI(serverUrl).host()) {
+    if (req && URI(input).host() === URI(req.origin).host()) {
       init = {
         ...init,
         headers: {

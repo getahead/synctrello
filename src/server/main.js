@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
 import mongoose from './lib/mongoose';
-import userMiddleware from './middleware/userMiddleware';
+// import userMiddleware from './middleware/userMiddleware';
 import serverUrlMiddleware from './middleware/originUrlMiddleware';
 import routes from './routes';
 
@@ -23,7 +23,7 @@ app.use(session({
   key: 'synctrello_sid',
   proxy: false,
   resave: true,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
     domain: config.session.cookie.domain,
     maxAge: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(compression());
 
-app.use(userMiddleware);
+// app.use(userMiddleware);
 app.use(routes);
 app.get('*', errorHandler);
 

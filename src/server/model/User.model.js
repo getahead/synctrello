@@ -1,10 +1,14 @@
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
+
+import config from '../config';
 import {isEmailValid, ERROR_MESSAGES} from '../../common/lib/validation';
 
 const TOKEN_EXPIRATION_TIME = 60 * 60 * 24 * 365;
 
 const mapOutputUser = (user) => ({
+  trelloId: user.trelloId,
   username: user.username,
   locale: user.locale,
   idBoards: user.idBoards
@@ -81,7 +85,8 @@ UserSchema.statics.findUserAndSync = function (trelloToken, trelloUser, updateTo
 
   if (updateToken) {
     const salt = Math.random() + '';
-    token = jwt.sign({id: trelloUser.id}, salt, { expiresIn: TOKEN_EXPIRATION_TIME });
+    const secret = User.encryptSecret(salt);
+    token = jwt.sign({id: trelloUser.id}, secret, { expiresIn: TOKEN_EXPIRATION_TIME });
     userMapper.salt = salt;
   }
 
@@ -96,18 +101,43 @@ UserSchema.statics.findUserAndSync = function (trelloToken, trelloUser, updateTo
     }));
 };
 
+UserSchema.statics.encryptSecret = (salt) =>
+  crypto.createHmac('sha1', salt).update(config.userSecret).digest('hex');
+
+/**
+ * Get user by token
+ * @param token
+ * @returns {Promise}
+ */
 UserSchema.statics.authorizeUserByToken = function (token) {
   const User = this;
   const decodedToken = jwt.decode(token);
 
-  console.log(jwt.decode(token))
   if (!decodedToken || !decodedToken.id) {
     return Promise.reject('Token is incorrect or exprired');
   }
 
-  console.log(decodedToken.id)
   return User.findOne({trelloId: decodedToken.id})
-    .then(mapOutputUser)
+    .then(user => user.validateUser(token))
+    .then(mapOutputUser);
+};
+
+/**
+ * Validate user by token
+ * @param token
+ * @returns {Promise}
+ */
+UserSchema.methods.validateUser = function (token) {
+  const User = this;
+  const secret = User.constructor.encryptSecret(User.salt);
+  return new Promise((resolve, reject) =>
+    jwt.verify(token, secret, function(err, decoded) {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(User);
+    })
+  );
 };
 
 const UserModel = mongoose.model('User', UserSchema);

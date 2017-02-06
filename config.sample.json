@@ -1,5 +1,6 @@
 {
   "googleAnalyticsId": "UA-XXXXXXX-X",
+  "userSecret": "syncTrello-secret-2411989",
 
   "API_URL": "https://trello.com/",
   "TRELLO_API_KEY": "8946c831b15b335bf71eec9733a09ff7",

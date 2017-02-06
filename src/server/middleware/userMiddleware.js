@@ -1,5 +1,5 @@
 export default function userMiddleware(req, res, next) {
-  const token = req.session.token || req.cookies.token || null;
+  const token = req.cookies && req.cookies.token || null;
   res.user = {
     isLoggedIn: false
   };

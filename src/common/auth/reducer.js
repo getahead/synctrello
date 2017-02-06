@@ -1,9 +1,10 @@
 import * as actions from './actions';
 import { Record } from '../transit';
-import User from './userModel';
+import Profile from './profileModel';
 
 const State = Record({
-  user: User(),
+  isLoggedIn: false,
+  profile: Profile(),
   status: '',
   error: ''
 }, 'auth');
@@ -11,7 +12,6 @@ const State = Record({
 const repositoriesReducer = (state = new State(), action = {}) => {
   switch (action.type) {
     case actions.GET_USER_INFO_START:
-    case actions.GET_GITHUB_USER_TOKEN_START:
     case actions.TRELLO_OAUTH_START: {
       return state.set('status', 'pending');
     }
@@ -27,25 +27,20 @@ const repositoriesReducer = (state = new State(), action = {}) => {
     }
 
     case actions.GET_USER_INFO_ERROR:
-    case actions.GET_GITHUB_USER_TOKEN_ERROR:
     case actions.TRELLO_OAUTH_ERROR: {
       return state
         .set('error', action.payload.error)
-        .set('status', '');
-    }
-
-    case actions.GET_GITHUB_USER_TOKEN_SUCCESS: {
-      return state
-        .set('error', '')
+        .set('isLoggedIn', false)
         .set('status', '');
     }
 
     case actions.GET_USER_INFO_SUCCESS: {
-      const user = new User(action.payload.data);
+      const profile = new Profile(action.payload.data);
       return state
         .set('error', '')
         .set('status', '')
-        .set('user', user);
+        .set('isLoggedIn', true)
+        .set('profile', profile);
     }
 
     default:

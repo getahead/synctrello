@@ -16,7 +16,7 @@ const configureMiddleware = (initialState, platformDeps, platformMiddleware, req
       ...platformDeps,
       getUid: () => platformDeps.uuid.v4(),
       now: () => Date.now(),
-      fetch: createFetch(initialState.device.host)
+      fetch: createFetch(initialState.device.host, req)
     }),
     promiseMiddleware({
       promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR']

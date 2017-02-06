@@ -24,7 +24,7 @@ router.get('/trello', (req, res) => {
           response_type: 'token',
           return_url: `${req.origin}/action/social-login/finish/`,
           callback_method: `postMessage`,
-          scope: ['account', 'read'].join(',')
+          scope: ['account', 'read', 'write'].join(',')
         })
         .toString()
     }
@@ -40,7 +40,7 @@ router.get('/user', (req, res) => {
 
   return promise(token)
     .then(result => {
-      if (!result.user) {
+      if (!result) {
         return Promise.reject(result);
       }
       if (result.token) {
@@ -48,10 +48,16 @@ router.get('/user', (req, res) => {
       }
       return res.send({
         success: true,
-        data: result.user
+        data: result
       })
     })
-    .catch(err => res.send(err || UNAUTHORIZED_BODY))
+    .catch(err => res.send({
+      ...UNAUTHORIZED_BODY,
+      error: {
+        ...UNAUTHORIZED_BODY.error,
+        ...err
+      }
+    }))
 });
 
 export default router;

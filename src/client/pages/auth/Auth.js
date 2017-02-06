@@ -6,8 +6,8 @@ import {Redirect} from 'react-router';
 
 import SignIn from '../../components/sign-in/SignIn';
 
-const Auth = ({user}) =>
-  user.isLoggedIn
+const Auth = ({isLoggedIn}) =>
+  isLoggedIn
     ? <Redirect to="/profile" />
     : <div className="auth">
         <div className="auth__container">
@@ -16,9 +16,9 @@ const Auth = ({user}) =>
       </div>;
 
 Auth.propTypes = {
-  user: React.PropTypes.object.isRequired
+  isLoggedIn: React.PropTypes.bool.isRequired
 };
 
 export default connect(state => ({
-  user: state.auth.user
+  isLoggedIn: state.auth.isLoggedIn
 }))(Auth);

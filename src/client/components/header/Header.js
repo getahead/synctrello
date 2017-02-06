@@ -6,7 +6,7 @@ import {Link} from 'react-router';
 
 import Avatar from '../avatar/Avatar';
 
-const Header = ({user}) =>
+const Header = ({isLoggedIn, profile}) =>
   <div className="header">
     <div className="header__container">
       <div className="header__logo">
@@ -16,11 +16,11 @@ const Header = ({user}) =>
       </div>
 
       <div className="header__auth">
-        {user.isLoggedIn
+        {isLoggedIn
           ? <Link to="/profile" className="header__item" activeClassName="is-active">
               <div className="header__profile">
-                <div className="header__profile-item"><Avatar size="s" user={user} /></div>
-                <div className="header__profile-item header__profile-item_name">{user.login}</div>
+                <div className="header__profile-item"><Avatar size="s" user={profile} /></div>
+                <div className="header__profile-item header__profile-item_name">{profile.username}</div>
               </div>
 
             </Link>
@@ -35,9 +35,11 @@ const Header = ({user}) =>
   </div>;
 
 Header.propTypes = {
-  user: React.PropTypes.object
+  isLoggedIn: React.PropTypes.bool.isRequired,
+  profile: React.PropTypes.object.isRequired
 };
 
 export default connect(state => ({
-  user: state.auth.user
+  isLoggedIn: state.auth.isLoggedIn,
+  profile: state.auth.profile
 }))(Header);

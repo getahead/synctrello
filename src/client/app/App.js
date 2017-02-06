@@ -28,19 +28,15 @@ class App extends React.Component {
   };
 
   static propTypes = {
-    user: React.PropTypes.object.isRequired,
+    isLoggedIn: React.PropTypes.bool.isRequired,
     getUserInfo: React.PropTypes.func.isRequired
   };
 
   componentWillMount() {
-    const {user, getUserInfo} = this.props;
+    const {isLoggedIn, getUserInfo} = this.props;
     const { serverFetchPromises } = this.context;
 
-    if (user.isLoggedIn) {
-      if (!serverFetchPromises) {
-        return getUserInfo();
-      }
-
+    if (isLoggedIn && serverFetchPromises) {
       return serverFetchPromises.push(getUserInfo());
     }
 
@@ -72,5 +68,5 @@ class App extends React.Component {
 
 
 export default connect(state => ({
-  user: state.auth.user
+  isLoggedIn: state.auth.isLoggedIn,
 }), { getUserInfo })(App);

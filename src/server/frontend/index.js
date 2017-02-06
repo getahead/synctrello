@@ -34,7 +34,8 @@ const createStore = (req, res) => configureStore({
   req,
   initialState: {
     ...initialState,
-    auth: initialState.auth.update('user', user => user.merge(res.user)),
+    auth: initialState.auth
+      .set('isLoggedIn', !!(req.cookies && req.cookies.token)),
     device: {
       ...initialState.device,
       host: req.origin,
