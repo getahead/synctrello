@@ -27,10 +27,10 @@ export const getWebhooks = (trelloToken) => {
     });
 
   return makeRequest(url.toString())
-    .then(response => response.data);
+    .then(response => response.data)
 };
 
-export const addWebhook = ({idBoard, active, originUrl, trelloId, trelloToken}) => {
+export const addWebhook = ({idBoard, active, originUrl, id, trelloToken}) => {
   const url = URI(config.API_URL)
     .pathname('/1/webhooks/')
     .query({
@@ -39,7 +39,7 @@ export const addWebhook = ({idBoard, active, originUrl, trelloId, trelloToken}) 
     });
 
   const callbackURL = URI(config.isProduction ? originUrl : config.productionUrl)
-    .pathname(`/webhooks/${trelloId}`)
+    .pathname(`/webhooks/${id}`)
     .toString();
 
   return makeRequest(url.toString(), {

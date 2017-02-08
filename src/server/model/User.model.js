@@ -9,12 +9,14 @@ const TOKEN_EXPIRATION_TIME = 60 * 60 * 24 * 365;
 import {AVATAR_HOST} from '../lib/constants';
 
 const mapOutputUser = (user) => ({
-  trelloId: user.trelloId,
+  id: user._id.toString(),
   username: user.username,
   locale: user.locale,
   idBoards: user.idBoards,
   avatar: `${AVATAR_HOST}${user.avatarHash}/170.png`
 });
+const signToken = (id) =>
+  jwt.sign({id}, config.userSecret, { expiresIn: TOKEN_EXPIRATION_TIME });
 
 const Schema = mongoose.Schema;
 
@@ -84,44 +86,28 @@ UserSchema.statics.findUserAndSync = function (trelloToken, trelloUser, updateTo
     lastSynced: Date.now()
   };
 
-  let token;
-
-  if (updateToken) {
-    const salt = Math.random() + '';
-    const secret = User.encryptSecret(salt);
-    token = jwt.sign({id: trelloUser.id}, secret, { expiresIn: TOKEN_EXPIRATION_TIME });
-    userMapper.salt = salt;
-  }
-
   return User.findOneAndUpdate({trelloId: trelloUser.id}, userMapper, {
     upsert: true,
     new: true,
     setDefaultsOnInsert: true
   }).lean()
-    .then(user => ({
-      token,
-      profile: mapOutputUser(user)
-    }));
+    .then(user => {
+      const token = updateToken && signToken(user._id);
+      return {
+        token,
+        profile: mapOutputUser(user)
+      }
+    });
 };
-
-UserSchema.statics.encryptSecret = (salt) =>
-  crypto.createHmac('sha1', salt).update(config.userSecret).digest('hex');
 
 /**
  * Get user by token
  * @param token
  * @returns {Promise}
  */
-UserSchema.statics.authorizeUserByToken = function (token) {
+UserSchema.statics.authorizeUserByVerifiedTokenId = function (id) {
   const User = this;
-  const decodedToken = jwt.decode(token);
-
-  if (!decodedToken || !decodedToken.id) {
-    return Promise.reject('Token is incorrect or exprired');
-  }
-
-  return User.findOne({trelloId: decodedToken.id})
-    .then(user => user.validateUser(token))
+  return User.findOne({_id: id})
     .then(user => ({
       trelloToken: user.trelloToken,
       profile: mapOutputUser(user)
@@ -135,7 +121,7 @@ UserSchema.statics.authorizeUserByToken = function (token) {
  */
 UserSchema.methods.validateUser = function (token) {
   const User = this;
-  const secret = User.constructor.encryptSecret(User.salt);
+  const secret = config.userSecret;
   return new Promise((resolve, reject) =>
     jwt.verify(token, secret, function(err, decoded) {
       if (err) {

@@ -32,13 +32,17 @@ router.get('/trello', (req, res) => {
 });
 
 router.get('/user', (req, res) => {
-  const promise = req.query.token
-    ? userController.loginWithTrello
-    : userController.authorizeUserByLocalToken;
+  if (!req.query.token) {
+    return res.send(res.user.isLoggedIn
+      ? {
+          success: true,
+          data: res.user.profile
+        }
+      : UNAUTHORIZED_BODY
+    );
+  }
 
-  const token = req.query.token || req.cookies.token;
-
-  return promise(token)
+  return userController.loginWithTrello(req.query.token)
     .then(result => {
       if (!result) {
         return Promise.reject(result);

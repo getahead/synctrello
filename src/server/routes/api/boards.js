@@ -57,7 +57,7 @@ router.get('/webhook', (req, res) => {
     promise = boardsController.addWebhook({
       idBoard: req.query.idBoard,
       originUrl: req.origin,
-      trelloId: res.user.profile.trelloId,
+      id: res.user.profile.id,
       trelloToken: res.user.trelloToken
     })
   }

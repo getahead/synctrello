@@ -1,3 +1,5 @@
+import config from '../config';
+import jwt from 'jsonwebtoken';
 import * as userController from '../controllers/UserController';
 
 export default function userMiddleware(req, res, next) {
@@ -12,7 +14,20 @@ export default function userMiddleware(req, res, next) {
     return next();
   }
 
-  return userController.authorizeUserByLocalToken(token)
+  let decoded;
+  try {
+    decoded = jwt.verify(token, config.userSecret);
+  }
+  catch(e) {
+    res.cookie('token', '');
+    return next();
+  }
+
+  if (!decoded) {
+    return next();
+  }
+
+  return userController.authorizeUserByLocalToken(decoded.id)
     .then(result => {
       if (!result) {
         return Promise.reject(result);

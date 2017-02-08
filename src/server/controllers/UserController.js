@@ -5,18 +5,8 @@ import config from '../config';
 import makeRequest from '../lib/makeRequest';
 import UserModel from '../model/User.model';
 
-export const authorizeUserByLocalToken = (token) => {
-  // 1. Get user by local token
-  // 2. Return user info
-  if (!token) {
-    return Promise.reject('You should not pass without Trello token');
-  }
-
-  return UserModel.authorizeUserByToken(token)
-    .then(user => {
-      return user;
-    });
-};
+export const authorizeUserByLocalToken = (id) =>
+  UserModel.authorizeUserByVerifiedTokenId(id);
 
 export const fetchUserFromTrello = (trelloToken) => {
   if (!trelloToken) {

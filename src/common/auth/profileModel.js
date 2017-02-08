@@ -1,7 +1,7 @@
 import {Record} from '../transit';
 
 const Profile = Record({
-  trelloId: '',
+  id: '',
   username: '',
   locale: '',
   idBoards: [],
