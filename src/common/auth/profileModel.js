@@ -4,7 +4,8 @@ const Profile = Record({
   trelloId: '',
   username: '',
   locale: '',
-  idBoards: []
+  idBoards: [],
+  avatar: ''
 }, 'user');
 
 export default Profile;

@@ -1,5 +1,5 @@
 import config from '../config';
-import repositoriesReducer from '../../common/repositories/reducer';
+import boardsReducer from '../../common/boards/reducer';
 import authReducer from '../../common/auth/reducer';
 // import configReducer from '../../common/config/reducer';
 // import deviceReducer from '../../common/device/reducer';
@@ -23,7 +23,7 @@ const createInitialState = () => ({
     locales: config.locales,
 //    messages,
   },
-  repositories: repositoriesReducer(),
+  boards: boardsReducer(),
   auth: authReducer()
 });
 

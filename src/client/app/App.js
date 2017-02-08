@@ -8,7 +8,6 @@ import {Match, Miss} from 'react-router';
 import {getUserInfo} from '../../common/auth/actions';
 
 import Home from '../pages/home/Home';
-import Explore from '../pages/explore/Explore';
 import Auth from '../pages/auth/Auth';
 import Profile from '../pages/profile/Profile';
 
@@ -32,6 +31,7 @@ class App extends React.Component {
     getUserInfo: React.PropTypes.func.isRequired
   };
 
+  /*
   componentWillMount() {
     const {isLoggedIn, getUserInfo} = this.props;
     const { serverFetchPromises } = this.context;
@@ -42,6 +42,7 @@ class App extends React.Component {
 
     return true;
   }
+  */
 
   render() {
     return (
@@ -52,7 +53,6 @@ class App extends React.Component {
           </div>
           <div className="layout__content">
             <Match pattern="/" exactly component={Home} />
-            <Match pattern="/explore" component={Explore} />
             <Match pattern="/auth" component={Auth} />
             <Match pattern="/profile" component={Profile} />
             <Miss component={NotFound} />

@@ -1,6 +1,8 @@
 mixin-button-theme($color, $fill = true, $textColor = false, $customBackgroundColor = none, $shadow = true)
     $lightness = lightness($color)
 
+    -webkit-tap-highlight-color rgba(0, 0, 0, .1)
+
     if $fill
         background-color $color
         border-color transparent
@@ -26,13 +28,23 @@ mixin-button-theme($color, $fill = true, $textColor = false, $customBackgroundCo
         if $fill
             background-color darken($color, 15%)
         else
-            box-shadow none
+            background-color lighten($color, 90%)
+
+            .button__label
+                transform translateY(1px)
 
 
     &:disabled
         box-shadow none
         if $fill
             background-color $color
+
+    @media(min-width: $devices.ipad)
+        &:hover
+            if $fill
+                background-color darken($color, 15%)
+            else
+                background-color lighten($color, 95%)
 
 
 mixin-placeholder($color, $fontWeight = 400, $letterSpacing = 0, $fontSize = false)

@@ -11,7 +11,7 @@ const Header = ({isLoggedIn, profile}) =>
     <div className="header__container">
       <div className="header__logo">
         <Link to="/" className="header__item">
-          <img src={require('./logo.svg')} alt="Git starter" />
+          <img src={require('./logo.svg')} className="header__logo-img" alt="Git starter" />
         </Link>
       </div>
 
@@ -29,7 +29,6 @@ const Header = ({isLoggedIn, profile}) =>
       </div>
       <div className="header__items">
         <Link to="/" className="header__item" activeClassName="is-active" activeOnlyWhenExact>Home</Link>
-        <Link to="/explore" className="header__item" activeClassName="is-active">Explore repositories</Link>
       </div>
     </div>
   </div>;

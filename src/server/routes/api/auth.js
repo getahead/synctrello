@@ -48,7 +48,7 @@ router.get('/user', (req, res) => {
       }
       return res.send({
         success: true,
-        data: result
+        data: result.profile
       })
     })
     .catch(err => res.send({

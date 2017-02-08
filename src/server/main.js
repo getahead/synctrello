@@ -5,9 +5,10 @@ import express from 'express';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import modifyResponse from './middleware/modifyResponse';
 
 import mongoose from './lib/mongoose';
-// import userMiddleware from './middleware/userMiddleware';
+import userMiddleware from './middleware/userMiddleware';
 import serverUrlMiddleware from './middleware/originUrlMiddleware';
 import routes from './routes';
 
@@ -34,8 +35,9 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(compression());
+app.use(modifyResponse)
 
-// app.use(userMiddleware);
+app.use(userMiddleware);
 app.use(routes);
 app.get('*', errorHandler);
 

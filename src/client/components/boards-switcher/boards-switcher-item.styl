@@ -1,0 +1,70 @@
+$this = '.boards-switcher-item'
+
+{$this}
+    $checkboxSize = 30px
+    $blockHeight = 50px
+
+    display block
+    user-select none
+
+    -webkit-tap-highlight-color rgba(0, 0, 0, .1)
+
+
+    &_pending
+        pointer-events none
+        opacity .9
+
+    &__container
+        border: 1px solid $gray.border
+        cursor pointer
+
+        {$this}_error &
+            border-color: rgba($colors.red, .5)
+
+
+    &__checkbox
+        position relative
+        display block
+        float left
+        size $checkboxSize
+        margin (($blockHeight - $checkboxSize) / 2)px 5px
+
+
+    &__body
+        margin-left $checkboxSize + 10px
+        padding 0 5px 0 5px
+
+        line-height $blockHeight
+
+
+    &__name
+        display inline-block
+        vertical-align middle
+        line-height 1
+
+        font-size 14px
+        letter-spacing -.4px
+        font-weight 600
+
+        color: $colors.black
+
+    &__error
+        position absolute
+        font-size 10px
+        color: rgba($colors.red, .5)
+
+    @media(min-width: $devices.ipad)
+        &__container
+            transition 100ms
+
+            &:hover
+                background: $gray.superLight
+
+            &:active
+                background: $gray.light
+                transform translateY(1px)
+
+
+
+
+

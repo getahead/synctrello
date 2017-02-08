@@ -11,7 +11,7 @@ const Avatar = ({user = {}, className, size = 'm', ...rest}) =>
     }, className)}
     {...rest}
   >
-    {!!user.avatar_url && <img className="avatar__image" src={user.avatar_url} alt="avatar" />}
+    {!!user.avatar && <img className="avatar__image" src={user.avatar} alt="avatar" />}
   </div>;
 
 Avatar.propTypes = {

@@ -30,6 +30,7 @@ const Html = ({
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta content="ie=edge" httpEquiv="x-ua-compatible" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    {isProduction && <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"/>}
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,800&amp;subset=cyrillic" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     {helmet.title.toComponent()}

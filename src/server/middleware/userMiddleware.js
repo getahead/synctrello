@@ -1,18 +1,35 @@
+import * as userController from '../controllers/UserController';
+
 export default function userMiddleware(req, res, next) {
   const token = req.cookies && req.cookies.token || null;
   res.user = {
-    isLoggedIn: false
+    isLoggedIn: false,
+    profile: {},
+    token: ''
   };
 
   if (!token) {
     return next();
   }
 
-  res.user = {
-    ...res.user,
-    isLoggedIn: true
-  };
+  return userController.authorizeUserByLocalToken(token)
+    .then(result => {
+      if (!result) {
+        return Promise.reject(result);
+      }
+      if (result.token) {
+        res.cookie('token', result.token);
+      }
+      res.user = {
+        isLoggedIn: true,
+        profile: result.profile,
+        trelloToken: result.trelloToken
+      };
 
-  req.session.token = token;
-  return next();
+      return next();
+    })
+    .catch(err => {
+      res.cookie('token', '');
+      return next();
+    });
 }

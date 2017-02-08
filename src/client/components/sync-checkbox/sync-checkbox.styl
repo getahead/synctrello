@@ -1,0 +1,72 @@
+.sync-checkbox
+    position relative
+    display block
+
+    border-radius 50%
+    border: 1px solid $gray.border
+    color: $gray.border
+
+    text-align center
+    transition 300ms
+
+    .spinner
+        absolute left top
+        opacity 0
+
+        margin -2px 0 0 -2px
+        transition opacity 300ms
+
+    .icon_check
+        opacity 0
+        transition opacity 100ms
+
+
+    &_size
+        &_s
+            size 12px
+            line-height @height
+
+        &_m
+            size 18px
+            line-height @height
+
+        &_l
+            size 22px
+            line-height @height
+
+        &_xl
+            size 28px
+            line-height @height
+
+        &_xxl
+            size 30px
+            line-height @height
+
+        &_xxxl
+            size 48px
+            line-height @height
+
+
+
+    &_active
+        border-color: $colors.green
+        color: $colors.green
+
+        .icon_check
+            //visibility visible
+            opacity 1
+
+    &_pending
+        border-color transparent !important
+        transition-delay 300ms
+
+        .spinner
+            opacity 1
+            transition-delay 300ms
+
+        .icon_check
+            opacity 0!important
+            transition-delay 300ms
+
+
+

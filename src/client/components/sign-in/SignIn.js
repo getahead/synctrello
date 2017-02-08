@@ -28,15 +28,15 @@ const oAuthPopupOpen = (authorize, getUserInfo) => {
 const SignIn = ({status, profile, trelloOauth, getUserInfo}) =>
   <div className="sign-in">
     <div className="sign-in__header">
-      Sign in with your existing GitHub account
+      Sign in with your existing Trello account
     </div>
     <div className="sign-in__avatar">
       <Avatar user={profile} size="l" />
     </div>
     <div className="sign-in__button">
       <Button
-        theme="black"
-        icon="octicon"
+        theme="trello"
+        icon="trello"
         label="Sign in with Trello"
         size="m"
         pending={status === 'pending'}

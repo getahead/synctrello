@@ -1,10 +1,12 @@
 import express from 'express';
 import auth from './auth';
+import boards from './boards';
 
 const router = express.Router();
 
 
 router.use('/auth', auth);
+router.use('/boards', boards);
 
 router.get('/hello', (req, res) =>
   res.json({

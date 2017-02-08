@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import repositoriesReducer from './repositories/reducer';
+import boardsReducer from './boards/reducer';
 import authReducer from './auth/reducer';
 
 const resetStateOnSignOutReducer = (reducer, initialState) => (
@@ -28,7 +28,7 @@ const configureReducer = (initialState) => {
     config: (state = {}) => state,
     device: (state = {}) => state,
     intl: (state = {}) => state,
-    repositories: repositoriesReducer,
+    boards: boardsReducer,
     auth: authReducer
   });
 

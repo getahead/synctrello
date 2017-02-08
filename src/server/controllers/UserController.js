@@ -14,7 +14,6 @@ export const authorizeUserByLocalToken = (token) => {
 
   return UserModel.authorizeUserByToken(token)
     .then(user => {
-
       return user;
     });
 };

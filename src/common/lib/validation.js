@@ -1,7 +1,7 @@
 export const ERROR_MESSAGES = {
-  UNEXPECTED_ERROR: 'Непредвиденная ошибка. Попробуйте повторить запрос позже',
-  TypeError: 'Ошибка сети, либо неверный ответ сервера',
-  Unauthorized: 'Ошибка авторизации. Время сессии истекло',
+  UNEXPECTED_ERROR: 'Unexpected error. Please try again or later',
+  TypeError: 'Network error. Please try again later',
+  Unauthorized: 'Unauthorized. Sign in to continue',
 
   REQUIRED: '{FIELD_NAME} is required',
   VALIDATE_PHONE: 'Phone number is not valid',

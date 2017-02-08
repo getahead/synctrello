@@ -1,6 +1,7 @@
 .header
     display block
     border-bottom: 1px solid $gray.border
+    background-color: $gray.superLight
 
     &__container
         max-width $contentWidth
@@ -14,6 +15,10 @@
         float left
         width 180px
 
+        &-img
+            display inline-block
+            vertical-align middle
+
 
     &__auth
         float right
@@ -24,25 +29,41 @@
         margin 0 200px
 
 
-    &__item
-        display inline-block
-        padding 10px
+    &__auth &__item
+    &__items &__item
+        padding 0 10px
 
+    &__item
+        position relative
+        display inline-block
+        line-height 50px
+        vertical-align middle
+        color: $colors.gray
+
+        &:before
+            display none
+            content ''
+            absolute bottom -1px left
+            width 100%
+            height 1px
+            background-color: $colors.gray
 
         &.is-active
-            color red
+            color: $colors.black
+
+            &:before
+                display block
+                background-color: $colors.black
+
 
 
     &__profile
         white-space nowrap
 
         &-item
-            padding-left 10px
             display inline-block
             vertical-align middle
 
             &_name
                 max-width 120px
                 ellipsis()
-
-

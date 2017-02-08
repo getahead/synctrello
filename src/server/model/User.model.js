@@ -6,12 +6,14 @@ import config from '../config';
 import {isEmailValid, ERROR_MESSAGES} from '../../common/lib/validation';
 
 const TOKEN_EXPIRATION_TIME = 60 * 60 * 24 * 365;
+import {AVATAR_HOST} from '../lib/constants';
 
 const mapOutputUser = (user) => ({
   trelloId: user.trelloId,
   username: user.username,
   locale: user.locale,
-  idBoards: user.idBoards
+  idBoards: user.idBoards,
+  avatar: `${AVATAR_HOST}${user.avatarHash}/170.png`
 });
 
 const Schema = mongoose.Schema;
@@ -72,6 +74,7 @@ UserSchema.statics.findUserAndSync = function (trelloToken, trelloUser, updateTo
   const User = this;
   const userMapper = {
     trelloToken,
+    avatarHash: trelloUser.avatarHash,
     trelloId: trelloUser.id,
     idBoards: trelloUser.idBoards,
     email: trelloUser.email,
@@ -97,7 +100,7 @@ UserSchema.statics.findUserAndSync = function (trelloToken, trelloUser, updateTo
   }).lean()
     .then(user => ({
       token,
-      user: mapOutputUser(user)
+      profile: mapOutputUser(user)
     }));
 };
 
@@ -119,7 +122,10 @@ UserSchema.statics.authorizeUserByToken = function (token) {
 
   return User.findOne({trelloId: decodedToken.id})
     .then(user => user.validateUser(token))
-    .then(mapOutputUser);
+    .then(user => ({
+      trelloToken: user.trelloToken,
+      profile: mapOutputUser(user)
+    }));
 };
 
 /**

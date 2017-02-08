@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Icon from '../icon/Icon';
-import Spinner from '../spinner/Spinner.react';
+import Spinner from '../spinner/Spinner';
 
 const Button = ({
   label,
