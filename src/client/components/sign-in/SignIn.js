@@ -2,6 +2,8 @@ import './sign-in.styl';
 
 import React from 'react';
 import {connect} from 'react-redux';
+import cookie from 'react-cookie';
+
 import {trelloOauth, getUserInfo} from '../../../common/auth/actions';
 import {windowOpen} from '../../lib/popup';
 
@@ -10,14 +12,20 @@ import Button from '../button/Button';
 
 let oAuthPopUp;
 
+const rememberUser = (token = '') => {
+  cookie.save('token', token, { path: '/' });
+};
+
 const oAuthPopupOpen = (authorize, getUserInfo) => {
-  authorize()
+  authorize(document.location.origin)
     .then((res) => {
       if (res.value.success && res.value.data) {
         oAuthPopUp = windowOpen(res.value.data.url, 'Sign in with Trello');
 
         window.addEventListener('message', (event) => {
-          getUserInfo(event.data);
+          getUserInfo(event.data)
+            .then(res => rememberUser(res.value.data.token))
+            .catch(err => rememberUser());
           return oAuthPopUp.close();
         });
       }

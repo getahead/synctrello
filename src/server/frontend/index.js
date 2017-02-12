@@ -34,13 +34,15 @@ const createStore = (req, res) => configureStore({
   req,
   initialState: {
     ...initialState,
+    config: initialState.config,
     auth: initialState.auth
-      .set('isLoggedIn', res.user.isLoggedIn)
-      .update('profile', user => user.merge(res.user.profile)),
+      .set('isLoggedIn', req.cookies && !!req.cookies.token)
+      .set('token', req.cookies.token),
     boards: initialState.boards,
     device: {
       ...initialState.device,
       host: req.origin,
+      api: config.API,
     },
     intl: {
       ...initialState.intl,

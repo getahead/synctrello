@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import boardsReducer from './boards/reducer';
 import authReducer from './auth/reducer';
+import configReducer from './config/reducer';
 
 const resetStateOnSignOutReducer = (reducer, initialState) => (
   state,
@@ -25,7 +26,7 @@ const resetStateOnSignOutReducer = (reducer, initialState) => (
 const configureReducer = (initialState) => {
   let reducer = combineReducers({
     app: (state = {}) => state,
-    config: (state = {}) => state,
+    config: configReducer,
     device: (state = {}) => state,
     intl: (state = {}) => state,
     boards: boardsReducer,

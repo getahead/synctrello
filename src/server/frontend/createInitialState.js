@@ -1,7 +1,7 @@
 import config from '../config';
 import boardsReducer from '../../common/boards/reducer';
 import authReducer from '../../common/auth/reducer';
-// import configReducer from '../../common/config/reducer';
+import configReducer from '../../common/config/reducer';
 // import deviceReducer from '../../common/device/reducer';
 // import intlReducer from '../../common/intl/reducer';
 // import loadMessages from '../intl/loadMessages';
@@ -9,12 +9,7 @@ import authReducer from '../../common/auth/reducer';
 //const messages = loadMessages();
 
 const createInitialState = () => ({
-  config: {
-//    ...configReducer(),
-    appName: config.appName,
-    appVersion: config.appVersion,
-    sentryUrl: config.sentryUrl
-  },
+  config: configReducer(),
   device: {}, //deviceReducer(),
   intl: {
 //    ...intlReducer(),

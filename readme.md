@@ -7,7 +7,7 @@ $ npm install -g n
 $ n stable
 ```
 
-[gulp](http://gulpjs.com/) intall globally
+[gulp](http://gulpjs.com/) install globally
 ```sh
 $ npm install -g gulp
 ```

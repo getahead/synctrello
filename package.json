@@ -1,8 +1,8 @@
 {
-  "name": "git-starter",
+  "name": "synctrello",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@46.36.221.48:git-starter.git",
+  "main": "src/server/index.js",
+  "repository": "git@5.101.117.269:synctrello.git",
   "author": "Michael Petrov <imrealpunk@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -13,7 +13,7 @@
     "test": "gulp test"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=7"
   },
   "dependencies": {
     "babel-core": "^6.21.0",
@@ -71,6 +71,7 @@
     "nib": "^1.1.2",
     "nodemon": "^1.11.0",
     "react": "^15.4.1",
+    "react-cookie": "^1.0.4",
     "react-dom": "^15.4.1",
     "react-helmet": "^3.2.3",
     "react-redux": "^5.0.1",

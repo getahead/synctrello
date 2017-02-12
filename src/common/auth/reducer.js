@@ -6,7 +6,8 @@ const State = Record({
   isLoggedIn: false,
   profile: Profile(),
   status: '',
-  error: ''
+  error: '',
+  token: '',
 }, 'auth');
 
 const repositoriesReducer = (state = new State(), action = {}) => {
@@ -35,12 +36,14 @@ const repositoriesReducer = (state = new State(), action = {}) => {
     }
 
     case actions.GET_USER_INFO_SUCCESS: {
-      const profile = new Profile(action.payload.data);
+      const profile = new Profile(action.payload.data.profile);
+
       return state
         .set('error', '')
         .set('status', '')
         .set('isLoggedIn', true)
-        .set('profile', profile);
+        .set('profile', profile)
+        .set('token', action.payload.data.token);
     }
 
     default:

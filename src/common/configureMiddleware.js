@@ -3,11 +3,12 @@ import promiseMiddleware from 'redux-promise-middleware';
 import createFetch from './createFetch';
 
 // Like redux-thunk, but with just one argument.
-const injectMiddleware = deps => ({ dispatch, getState }) => next => action =>
-  next(typeof action === 'function'
-    ? action({...deps, dispatch, getState})
+const injectMiddleware = (deps) => ({ dispatch, getState }) => next => action => {
+  return next(typeof action === 'function'
+    ? action({...deps, fetch: deps.fetch.bind(null, getState), dispatch, getState})
     : action,
   );
+}
 
 const configureMiddleware = (initialState, platformDeps, platformMiddleware, req) => {
 
@@ -16,7 +17,7 @@ const configureMiddleware = (initialState, platformDeps, platformMiddleware, req
       ...platformDeps,
       getUid: () => platformDeps.uuid.v4(),
       now: () => Date.now(),
-      fetch: createFetch(initialState.device.host, req)
+      fetch: createFetch(initialState.device.api, initialState.auth)
     }),
     promiseMiddleware({
       promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR']

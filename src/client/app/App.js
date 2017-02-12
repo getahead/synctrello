@@ -31,7 +31,6 @@ class App extends React.Component {
     getUserInfo: React.PropTypes.func.isRequired
   };
 
-  /*
   componentWillMount() {
     const {isLoggedIn, getUserInfo} = this.props;
     const { serverFetchPromises } = this.context;
@@ -42,7 +41,6 @@ class App extends React.Component {
 
     return true;
   }
-  */
 
   render() {
     return (

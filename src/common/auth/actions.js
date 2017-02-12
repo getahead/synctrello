@@ -15,16 +15,15 @@ export const GET_USER_INFO_ERROR = 'GET_USER_INFO_ERROR';
 export const getUserInfo = (token = '') => ({fetch}) => ({
   type: 'GET_USER_INFO',
   payload: {
-    promise: fetch(URI('/api/v1/auth/user').query({token}).toString(),
-      {credentials: 'include'})
+    promise: fetch(URI('/api/v1/auth/user/').query({token}).toString())
       .then(res => res.json())
   }
 });
 
-export const trelloOauth = () => ({fetch}) => ({
+export const trelloOauth = (origin = '') => ({fetch}) => ({
   type: 'TRELLO_OAUTH',
   payload: {
-    promise: fetch('/api/v1/auth/trello')
+    promise: fetch(URI('/api/v1/auth/trello/').query({origin}))
       .then(res => res.json())
   }
 });
@@ -32,7 +31,7 @@ export const trelloOauth = () => ({fetch}) => ({
 export const getGithubUserToken = () => ({fetch, dispatch}) => ({
   type: 'GET_GITHUB_USER_TOKEN',
   payload: {
-    promise: fetch('/api/v1/auth/trello-token', {credentials: 'include'})
+    promise: fetch('/api/v1/auth/trello-token/')
       .then(res => res.json())
       .then((res) => {
         dispatch(getUserInfo());

@@ -12,7 +12,6 @@ nconf.defaults({
   port: process.env.PORT || 3000,
   remoteHotReload: false,
   sentryUrl: '',
-  userSecret: '',
 });
 
 export default nconf.get();

@@ -12,7 +12,7 @@ export const fetchBoards = () => ({fetch}) => {
   return {
     type: 'FETCH_USER_BOARDS',
     payload: {
-      promise: fetch('/api/v1/boards/get', {credentials: 'include'})
+      promise: fetch('/api/v1/boards/get/')
         .then(res => res.json())
     },
   };
@@ -22,13 +22,11 @@ export const toggleWebhookBoard = ({id: idBoard, active, idWebhook}) => ({fetch}
   return {
     type: 'TOGGLE_WEBHOOK_BOARD',
     payload: {
-      promise: fetch(URI(`/api/v1/boards/webhook`).query({
+      promise: fetch(URI(`/api/v1/boards/webhook/`).query({
         idBoard,
         active,
         idWebhook
-      }).toString(), {
-        credentials: 'include'
-      })
+      }).toString())
         .then(res => res.json())
     },
   };
