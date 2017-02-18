@@ -5,6 +5,9 @@
   "productionUrl": "https://synctrello.com",
   "cookieSecret": "front-syncTrello-2411989-secret",
 
+  "SENTRY_DSN": "https://4b3c98405d1246adb3ddf65fa98a0f33:f1fc78bd86254939bdf79d6a4f029586@sentry.io/140359",
+  "SENTRY_PUBLIC_DSN": "https://4b3c98405d1246adb3ddf65fa98a0f33@sentry.io/140359",
+
   "mongo": {
     "host": "5.101.117.249",
     "port": "27017",

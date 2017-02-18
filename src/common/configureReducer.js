@@ -17,6 +17,7 @@ const resetStateOnSignOutReducer = (reducer, initialState) => (
   // Purge sensitive data, preserve only app and safe initial state.
   return reducer({
     app: state.app,
+    auth: initialState.auth,
     config: initialState.config,
     device: initialState.device,
     intl: initialState.intl,

@@ -9,9 +9,13 @@ import modifyResponse from './middleware/modifyResponse';
 import userMiddleware from './middleware/userMiddleware';
 import serverUrlMiddleware from './middleware/originUrlMiddleware';
 import routes from './routes';
+import raven from 'raven'
 
 const app = express();
 
+if (config.isProduction) {
+  app.use(raven.middleware.express.requestHandler(config.SENTRY_DSN));
+}
 app.enable('strict routing');
 app.use(serverUrlMiddleware);
 app.use(express.static('public'));
@@ -25,6 +29,10 @@ app.use(modifyResponse);
 
 app.use(userMiddleware);
 app.use(routes);
+
+if (config.isProduction) {
+  app.use(raven.middleware.express.errorHandler(config.SENTRY_DSN));
+}
 app.get('*', errorHandler);
 
 app.listen(config.port, '0.0.0.0', () => {

@@ -1,7 +1,9 @@
 import express from 'express';
+import * as commonController from '../controllers/CommonController';
 
 const router = express.Router();
 
+router.post('/sentry/', commonController.sentryProxy);
 router.get('/social-login/finish/', (req, res, next) => {
   if (req.query.code) {
     req.session.code = req.query.code;

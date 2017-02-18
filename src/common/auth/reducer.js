@@ -37,13 +37,14 @@ const repositoriesReducer = (state = new State(), action = {}) => {
 
     case actions.GET_USER_INFO_SUCCESS: {
       const profile = new Profile(action.payload.data.profile);
+      const token = action.payload.data.token || state.get('token');
 
       return state
         .set('error', '')
         .set('status', '')
         .set('isLoggedIn', true)
         .set('profile', profile)
-        .set('token', action.payload.data.token);
+        .set('token', token);
     }
 
     default:

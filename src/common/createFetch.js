@@ -12,6 +12,7 @@ export default function createFetch(serverUrl, auth) {
 
     return isomorphicFetch(input, {
       ...init,
+      mode: 'cors',
       headers: {
         ...init.headers,
         ...authorization,
