@@ -34,7 +34,8 @@ const createStore = (req, res) => configureStore({
   req,
   initialState: {
     ...initialState,
-    config: initialState.config,
+    config: initialState.config
+      .set('sentryUrl', config.SENTRY_PUBLIC_DSN),
     auth: initialState.auth
       .set('isLoggedIn', req.cookies && !!req.cookies.token)
       .set('token', req.cookies.token),

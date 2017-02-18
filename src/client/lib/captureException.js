@@ -9,24 +9,10 @@ export const configureReporting = ({sentryUrl, unhandledRejection}) => {
       'top.GLOBALS'
     ],
     ignoreUrls: [
-      /bn\.adblender\.ru/i,
       // Chrome extensions
       /extensions\//i,
       /^chrome:\/\//i
-    ],
-    transport: (options) => {
-      return fetch(sentryUrl, {
-        method: 'post',
-        body: JSON.stringify({
-          auth: options.auth,
-          data: options.data
-        }),
-        credentials: 'same-origin',
-        headers: {'Content-type': 'application/json'}
-      }).then(res => res.json())
-        .then(options.onSuccess)
-        .catch(options.onError)
-    }
+    ]
   }).install();
   register(unhandledRejection);
 };

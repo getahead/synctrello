@@ -14,7 +14,7 @@ const store = configureStore({
 
 if (process.env.NODE_ENV === 'production') {
   configureReporting({
-    sentryUrl: `${document.location.protocol}//${document.location.host}/action/sentry/`,
+    sentryUrl: initialState.config.get('sentryUrl'),
     unhandledRejection: fn => window.addEventListener('unhandledrejection', fn),
   });
 }
