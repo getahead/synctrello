@@ -1,12 +1,10 @@
 import config from '../config';
 import boardsReducer from '../../common/boards/reducer';
+import bindingsReducer from '../../common/bindings/reducer';
+import cardsReducer from '../../common/cards/reducer';
 import authReducer from '../../common/auth/reducer';
 import configReducer from '../../common/config/reducer';
-// import deviceReducer from '../../common/device/reducer';
-// import intlReducer from '../../common/intl/reducer';
-// import loadMessages from '../intl/loadMessages';
-
-//const messages = loadMessages();
+import searchReducer from '../../common/search/reducer';
 
 const createInitialState = () => ({
   config: configReducer(),
@@ -19,6 +17,9 @@ const createInitialState = () => ({
 //    messages,
   },
   boards: boardsReducer(),
+  bindings: bindingsReducer(),
+  cards: cardsReducer(),
+  search: searchReducer(),
   auth: authReducer()
 });
 

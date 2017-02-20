@@ -29,13 +29,13 @@ const repositoriesReducer = (state = new State(), action = {}) => {
           .set('error', action.payload.error)
       }
 
-      const repositories = action.payload.data.items.reduce((result, item) =>
+      const boards = action.payload.data.items.reduce((result, item) =>
           result.set(item.id, new Board(item))
         , Map());
 
       return state
         .set('status', '')
-        .update('map', map => map.merge(repositories));
+        .update('map', map => map.merge(boards));
     }
 
     case actions.TOGGLE_WEBHOOK_BOARD_SUCCESS: {

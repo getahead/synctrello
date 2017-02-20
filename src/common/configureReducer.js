@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
 import boardsReducer from './boards/reducer';
+import bindingsReducer from './bindings/reducer';
+import cardsReducer from './cards/reducer';
 import authReducer from './auth/reducer';
 import configReducer from './config/reducer';
+import searchReducer from './search/reducer';
 
 const resetStateOnSignOutReducer = (reducer, initialState) => (
   state,
@@ -31,6 +34,9 @@ const configureReducer = (initialState) => {
     device: (state = {}) => state,
     intl: (state = {}) => state,
     boards: boardsReducer,
+    bindings: bindingsReducer,
+    cards: cardsReducer,
+    search: searchReducer,
     auth: authReducer
   });
 

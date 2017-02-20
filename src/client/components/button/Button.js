@@ -9,6 +9,7 @@ const Button = ({
   label,
   icon,
   theme,
+  style,
   size = 'm',
   pending = false,
   disabled = false,
@@ -23,6 +24,7 @@ const Button = ({
     button_disabled: disabled,
     button_width_full: fullWidth,
     [`button_theme_${theme}`]: !!theme,
+    [`button_style_${style}`]: !!style,
     [`button_size_${size}`]: !!size
   }, className);
 

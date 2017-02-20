@@ -1,0 +1,130 @@
+.card
+    $cardWidth = 240px
+    $cardHeight = 130px
+
+    position relative
+    display block
+    width $cardWidth
+    height $cardHeight
+    padding 5px 15px
+
+    border: 1px solid $gray.border
+
+    background-color: $gray.superLight
+
+    &_inactive &__body
+        opacity .3
+
+    &_blur
+        border-color: rgba($gray.border, .5)
+
+    &_blur &__body
+        filter blur(2px)
+        opacity .5
+        transition 300ms
+        pointer-events none
+
+
+    &__settings
+        absolute top 3px right 3px
+        z-index 1
+        user-select none
+
+        &-icon
+            size 32px
+
+            font-size 16px
+            line-height @height
+            text-align center
+
+            color: $gray.middle
+            cursor pointer
+
+            &:hover
+                color: $colors.black
+                transition 300ms
+
+        &-popup
+            box-shadow 0 0 10px 0 rgba(0, 0, 0, .1)
+            background: $colors.white
+
+        &-info
+            padding 5px 10px
+            font-size 11px
+            color: $colors.gray
+
+            background-color: $gray.superLight
+            border-bottom: 1px solid $gray.light
+            margin-bottom 10px
+
+            strong
+                font-weight 600
+                color: $colors.black
+
+            a
+                color: $colors.blue
+                text-decoration underline
+
+                &:hover
+                    text-decoration none
+
+
+        &-item
+            padding 5px 10px
+            font-size 12px
+            cursor pointer
+
+            &:hover
+                color: $colors.blue
+
+            &_red
+                color: $colors.red
+
+                &:hover
+                    color: $colors.white
+                    background: $colors.red
+
+
+    &__name
+        font-weight 600
+        letter-spacing -.5px
+        font-size 14px
+
+        max-width 100%
+        ellipsis()
+
+
+    &__info
+        margin-top 10px
+
+        font-size 12px
+        color: $gray.middle
+
+        max-width 100%
+
+        ellipsis()
+
+        &-warn
+            display inline-block
+            margin-left 10px
+            line-height 14px
+
+            vertical-align middle
+            color: $colors.red
+
+        &-icon
+            display inline-block
+            vertical-align middle
+            font-size 14px
+
+        &-text
+            display inline-block
+            margin-left 10px
+            line-height 14px
+            vertical-align middle
+            color: $gray.border
+
+
+    &__cancel
+        text-align center
+        padding 15px 0

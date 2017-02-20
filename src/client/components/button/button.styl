@@ -28,11 +28,30 @@ $this = '.button'
         opacity .4
 
     &_size
+        &_xs
+            height 24px
+            padding 6px
+            font-size 12px
+
+            {$this}__icon:not(:last-child)
+                margin-right 5px
+
+        &_s
+            height 36px
+            min-width 50px
+            padding 9px 8px
+            font-size 14px
+
+            {$this}__icon:not(:last-child)
+                margin-right 5px
         &_m
             height 50px
             min-width 50px
             padding 16px 14px
             font-size 14px
+
+            {$this}__icon
+                margin-right 10px
 
 
     &_width_full
@@ -40,16 +59,27 @@ $this = '.button'
 
 
     &_theme
+        &_green
+            mixin-button-theme($colors.green)
+
         &_black
             mixin-button-theme($colors.black)
 
         &_trello
             mixin-button-theme($colors.trello, false)
 
+        &_clean
+            mixin-button-theme(transparent, false, $gray.middle)
+
+
+    &_style
+        &_round
+            border-radius 50%
+            padding-left 0
+            padding-right 0
 
     & > &__icon
         display inline-block
-        margin-right 10px
         vertical-align middle
 
 

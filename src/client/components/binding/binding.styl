@@ -1,0 +1,54 @@
+.binding
+    display block
+    max-width 660px
+
+    &__body
+        clearfix()
+
+    &__item
+        float right
+
+        &:first-of-type
+            float left
+
+    &__scheme
+        max-width 100px
+        margin 0 auto
+        text-align center
+
+        &-item
+            font-size 64px
+            height 32px
+            line-height @height
+            color: $gray.middle
+            overflow hidden
+            cursor pointer
+
+            &:hover
+                color: $colors.green
+
+            &_active
+                color: $colors.green
+
+                &:hover
+                    color: $colors.red
+
+            .icon
+                line-height @line-height
+
+
+        &-state
+            margin-top 20px
+            font-size 10px
+
+        &-enabled
+            color: $colors.green
+
+        &-disabled
+            color: $colors.red
+
+        &-add
+            padding 20px 0
+
+            .button
+                margin-top 10px

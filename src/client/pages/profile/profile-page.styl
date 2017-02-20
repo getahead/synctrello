@@ -3,5 +3,25 @@
 
     &__container
         max-width $contentWidth
-        padding 50px 15px
+        padding 10px 15px 50px
         margin 0 auto
+
+    &__menu
+        font-size 16px
+
+
+        &-item
+            display inline-block
+            margin-right 30px
+            line-height 32px
+            vertical-align center
+            border-bottom 1px solid transparent
+            color: $colors.gray
+
+            &.is-active
+                color: $colors.black
+                border-bottom-color: $colors.black
+
+
+    &__pages
+        margin-top 50px

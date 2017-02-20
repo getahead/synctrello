@@ -27,15 +27,3 @@ export const trelloOauth = (origin = '') => ({fetch}) => ({
       .then(res => res.json())
   }
 });
-
-export const getGithubUserToken = () => ({fetch, dispatch}) => ({
-  type: 'GET_GITHUB_USER_TOKEN',
-  payload: {
-    promise: fetch('/api/v1/auth/trello-token/')
-      .then(res => res.json())
-      .then((res) => {
-        dispatch(getUserInfo());
-        return res;
-      })
-  }
-});
