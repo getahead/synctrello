@@ -21,10 +21,23 @@ class Card extends React.Component {
     super(props);
 
     this.onWindowKeyUp = this.onWindowKeyUp.bind(this);
+    this.onSelect = this.onSelect.bind(this);
+    this.onRevert = this.onRevert.bind(this);
+
     this.state = {
       create: props.create,
       expand: false
     }
+  }
+
+  onSelect(card) {
+    this.props.onSelect(card);
+    this.setState({create: false});
+  }
+
+  onRevert() {
+    this.props.onSelect(null);
+    this.setState({create: this.props.create});
   }
 
   componentWillUnmount() {
@@ -47,7 +60,9 @@ class Card extends React.Component {
   }
 
   handleClickOutside(e) {
-    this.toggleExpand(false);
+    if (this.state.expand) {
+      this.toggleExpand(false);
+    }
   }
 
   render() {
@@ -57,14 +72,14 @@ class Card extends React.Component {
     if (create) {
       return (
         <div className="card">
-          <Search onSelect={this.props.onSelect}/>
-          {card &&
+          <Search onSelect={this.onSelect}/>
+          {card && create === this.props.create &&
             <div className="card__cancel">
               <Button
-                label="Cancel"
+                label="Revert"
                 theme="clean"
-                icon="cancel"
-                onClick={() => this.setState({create: false})}
+                icon="back"
+                onClick={this.onRevert}
               />
             </div>
           }
@@ -91,18 +106,20 @@ class Card extends React.Component {
                 <Icon name="dots"/>
               </div>
             : <div className="card__settings-popup">
-                <div className="card__settings-info">
-                  <div>
-                    <span>Last sync: </span>
-                    <strong>{moment(binding.lastSynced).format('YYYY-MM-DD HH:mm:ss')}</strong>
+                {!!binding.lastSynced &&
+                  <div className="card__settings-info">
+                    <div>
+                      <span>Last sync: </span>
+                      <strong>{moment(binding.lastSynced).format('YYYY-MM-DD HH:mm:ss')}</strong>
+                    </div>
+                    <div>
+                      <span>by </span>
+                      <a href={`https://trello.com/${binding.userNameLastSynced}`} target="_blank">
+                        {binding.userNameLastSynced}
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <span>by </span>
-                    <a href={`https://trello.com/${binding.userNameLastSynced}`} target="_blank">
-                      {binding.userNameLastSynced}
-                    </a>
-                  </div>
-                </div>
+                }
                 <a href={card.shortUrl} target="_blank" className="card__settings-item">
                   Go to card on Trello
                 </a>

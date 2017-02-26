@@ -35,6 +35,12 @@ const cardsReducer = (state = new State(), action = {}) => {
         .set('status', '')
         .set('error', action.payload.error);
     }
+
+    case actions.ADD_CARD: {
+      const card = new CardModel(action.payload);
+      return state.update('map', map => map.set(card.id, card));
+    }
+
     default:
       return state;
   }

@@ -22,12 +22,16 @@ const oAuthPopupOpen = (authorize, getUserInfo) => {
       if (res.value.success && res.value.data) {
         oAuthPopUp = windowOpen(res.value.data.url, 'Sign in with Trello');
 
-        window.addEventListener('message', (event) => {
+        function completeAuth(event){
           getUserInfo(event.data)
             .then(res => rememberUser(res.value.data.token))
             .catch(err => rememberUser());
+
+          window.removeEventListener('message', completeAuth);
           return oAuthPopUp.close();
-        });
+        }
+
+        window.addEventListener('message', completeAuth);
       }
       return res;
     });

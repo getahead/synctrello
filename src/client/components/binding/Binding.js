@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 
 import {editBinding} from '../../../common/bindings/actions';
+import {addCard} from '../../../common/cards/actions';
 
 import Card from '../card/Card';
 import Icon from '../icon/Icon';
@@ -12,30 +13,54 @@ import Button from '../button/Button';
 
 class Binding extends React.Component {
   static propTypes = {
-    create: React.PropTypes.bool,
+    editBinding: React.PropTypes.func.isRequired,
+    addCard: React.PropTypes.func.isRequired,
     cards: React.PropTypes.object.isRequired,
     boards: React.PropTypes.object.isRequired,
+    create: React.PropTypes.bool,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      bindFirst: '',
-      bindSecond: ''
+      bindFirst: null,
+      bindSecond: null
     }
   }
 
-  onSelectCard(cardId, name) {
-    this.setState({[name]: cardId});
+  onSelectCard(card, name) {
+    const {addCard} = this.props;
+
+    if (!card) {
+      return this.setState({[name]: null});
+    }
+
+    addCard({
+      id: card.id,
+      name: card.name,
+      desc: card.desc,
+      shortUrl: card.shortUrl,
+      idBoard: card.board.id,
+      idList: card.list.id
+    });
+
+    this.setState({
+      [name]: {
+        id: 'newBinding',
+        idCard: card.id,
+        idBoard: card.board.id,
+        bindingEnabled: false
+      }
+    });
   }
 
   render() {
     const {binding, cards, boards, create, editBinding} = this.props;
     const {bindFirst, bindSecond} = this.state;
 
-    const mainBinding = binding && binding.first();
-    const secondBinding = binding && binding.last();
+    const mainBinding = bindFirst || binding && binding.first();
+    const secondBinding = bindSecond || binding && binding.last();
 
     const cardFirst = mainBinding && cards.get(mainBinding.idCard);
     const cardSecond = secondBinding && cards.get(secondBinding.idCard);
@@ -52,7 +77,7 @@ class Binding extends React.Component {
               card={cardFirst}
               boards={boards}
               binding={mainBinding}
-              onSelect={(cardId) => this.onSelectCard(cardId, 'bindFirst')}
+              onSelect={(card) => this.onSelectCard(card, 'bindFirst')}
             />
           </div>
           <div className="binding__item">
@@ -61,7 +86,7 @@ class Binding extends React.Component {
               card={cardSecond}
               boards={boards}
               binding={secondBinding}
-              onSelect={(cardId) => this.onSelectCard(cardId, 'bindSecond')}
+              onSelect={(card) => this.onSelectCard(card, 'bindSecond')}
             />
           </div>
           {cardFirstBoard && cardSecondBoard && cardFirstBoard.active && cardSecondBoard.active
@@ -85,7 +110,7 @@ class Binding extends React.Component {
                 <div className="binding__scheme-state">
                   {(mainBinding && mainBinding.bindingEnabled)
                   && (secondBinding && secondBinding !== mainBinding && secondBinding.bindingEnabled)
-                    ? <div className="binding__scheme-enabled">two-ways binding</div>
+                    ? <div className="binding__scheme-enabled">two-way binding</div>
                     : (mainBinding.bindingEnabled !== secondBinding.bindingEnabled
                         ? <div className="binding__scheme-enabled">one-way binding</div>
                         : <div className="binding__scheme-disabled">binding disabled</div>
@@ -136,4 +161,4 @@ class Binding extends React.Component {
 export default connect(state => ({
   cards: state.cards.map,
   boards: state.boards.map
-}), {editBinding})(Binding);
+}), {editBinding, addCard})(Binding);

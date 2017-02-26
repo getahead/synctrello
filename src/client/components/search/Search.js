@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import enhanceWithClickOutside from 'react-click-outside';
 
 import {searchCard} from '../../../common/search/actions';
+import Spinner from '../spinner/Spinner';
+import Icon from '../icon/Icon';
 
 const TIMEOUT_DELAY_VALUE = 300;
 
@@ -18,7 +20,7 @@ class Search extends React.Component {
     super(props);
 
     this.onSearch = this.onSearch.bind(this);
-    this.translateDelayTimeout = null;
+    this.searchDelayTimeout = null;
     this.state = {
       value: '',
       pending: false,
@@ -34,9 +36,13 @@ class Search extends React.Component {
     const query = e.target.value;
     const searchValue = this.state.value;
 
-    clearTimeout(this.translateDelayTimeout);
-    this.translateDelayTimeout = setTimeout(() => {
-      if (query.trim() !== searchValue.trim()) {
+    if (!query.trim()) {
+      return this.setState({value: query, cards: []})
+    }
+
+    clearTimeout(this.searchDelayTimeout);
+    this.searchDelayTimeout = setTimeout(() => {
+      if (query !== searchValue) {
 
         this.setState({pending: true});
         searchCard(query, this.state.boards)
@@ -69,11 +75,11 @@ class Search extends React.Component {
 
   selectCard(card) {
     this.setState({value: card.name, cards: []});
-    this.props.onSelect(card.id);
+    this.props.onSelect(card);
   }
 
   render() {
-    const {value, cards} = this.state;
+    const {value, cards, pending} = this.state;
 
     return (
       <div className="search">
@@ -87,6 +93,12 @@ class Search extends React.Component {
             value={value}
             onChange={this.onSearch}
           />
+          <div className="search__icon">
+            {pending
+              ? <Spinner size="xs" />
+              : <Icon name="search" size="xs"/>
+            }
+          </div>
         </div>
 
         {cards && cards.length > 0 &&

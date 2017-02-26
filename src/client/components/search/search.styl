@@ -10,7 +10,7 @@
 
         font-size 12px
         color: $colors.gray
-        padding 5px
+        padding 5px 25px 5px 5px
 
         outline none
         border: 1px solid $gray.border
@@ -56,3 +56,24 @@
             color: $colors.gray
 
             ellipsis()
+
+
+    &__label
+        position relative
+
+
+    &__icon
+        absolute right top
+        width 25px
+        height 29px
+
+        font-size 14px
+        line-height 29px
+        text-align center
+
+        color: $colors.blue
+        pointer-events none
+
+        .icon
+            color: $gray.middle
+
