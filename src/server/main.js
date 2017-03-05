@@ -13,10 +13,14 @@ import Raven from 'raven'
 
 const app = express();
 
-if (config.isProduction) {
-  app.use(Raven.errorHandler(config.SENTRY_DSN));
-}
+app.disable('x-powered-by');
 app.enable('strict routing');
+
+if (config.isProduction) {
+  app.set('trust proxy', true);
+  Raven.config(config.SENTRY_DSN).install();
+  app.use(Raven.requestHandler());
+}
 app.use(serverUrlMiddleware);
 app.use(express.static('public'));
 
@@ -31,7 +35,7 @@ app.use(userMiddleware);
 app.use(routes);
 
 if (config.isProduction) {
-  app.use(Raven.errorHandler(config.SENTRY_DSN));
+  app.use(Raven.errorHandler());
 }
 app.get('*', errorHandler);
 
