@@ -23,7 +23,7 @@ const cardsReducer = (state = new State(), action = {}) => {
       }
 
       const cards = action.payload.data.items.reduce((result, item) =>
-        result.set(item.data.id, new CardModel(item.data)), Map());
+        result.set(item.id, new CardModel(item)), Map());
 
       return state
         .update('map', map => map.merge(cards))

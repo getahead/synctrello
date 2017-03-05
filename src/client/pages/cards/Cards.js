@@ -56,7 +56,10 @@ class Cards extends React.Component {
             </p>
           </div>
           <div className="cards__bindings">
-            <BindingList bindings={bindings.groupBy(binding => binding.idBinding)}/>
+            <BindingList bindings={bindings
+              .groupBy(binding => binding.idBinding)
+              .sort((a, b) => a.first().get('created') < b.first().get('created'))
+            }/>
           </div>
         </div>
       </div>

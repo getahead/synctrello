@@ -36,7 +36,7 @@ export default class BindingList extends React.Component {
         {expandNew &&
           <div className="binding-list__button">
             <div className="binding-list__title">Add custom binding</div>
-            <Binding create={true} />
+            <Binding create={true} onFinish={() => this.setState({expandNew: false})}/>
           </div>
         }
         <div className="binding-list__item">

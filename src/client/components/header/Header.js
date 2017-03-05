@@ -22,13 +22,20 @@ const Header = ({isLoggedIn, profile}) =>
                 <div className="header__profile-item"><Avatar size="s" user={profile} /></div>
                 <div className="header__profile-item header__profile-item_name">{profile.username}</div>
               </div>
-
             </Link>
           : <Link to="/auth" className="header__item" activeClassName="is-active">Sign in</Link>
         }
       </div>
       <div className="header__items">
-        <Link to="/" className="header__item" activeClassName="is-active" activeOnlyWhenExact>Home</Link>
+        <Link to="/" className="header__item" activeClassName="is-active" activeOnlyWhenExact>
+          Home
+        </Link>
+        <Link to="/faq" className="header__item" activeClassName="is-active" activeOnlyWhenExact>
+          FAQ
+        </Link>
+        <Link to="/contacts" className="header__item" activeClassName="is-active" activeOnlyWhenExact>
+          Contact us
+        </Link>
       </div>
     </div>
   </div>;

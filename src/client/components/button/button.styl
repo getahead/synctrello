@@ -22,6 +22,9 @@ $this = '.button'
         text-decoration none
         outline none
 
+    &:active
+        -webkit-tap-highlight-color rgba(0, 0, 0, .1)
+
     &:disabled
     &_disabled
         cursor default
@@ -67,6 +70,9 @@ $this = '.button'
 
         &_trello
             mixin-button-theme($colors.trello, false)
+
+        &_blue
+            mixin-button-theme($colors.blue)
 
         &_clean
             mixin-button-theme(transparent, false, $gray.middle)

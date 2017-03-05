@@ -11,11 +11,14 @@ const State = Record({
 
 const bindingsReducer = (state = new State(), action = {}) => {
   switch (action.type) {
+    case actions.DELETE_BINDING_START:
+    case actions.CREATE_BINDING_START:
     case actions.EDIT_BINDING_START:
     case actions.FETCH_BINDINGS_START: {
       return state.set('status', 'pending');
     }
 
+    case actions.CREATE_BINDING_SUCCESS:
     case actions.FETCH_BINDINGS_SUCCESS: {
       if (!action.payload.success || !action.payload.data) {
         return state
@@ -44,11 +47,32 @@ const bindingsReducer = (state = new State(), action = {}) => {
         .set('status', '');
     }
 
+    case actions.DELETE_BINDING_SUCCESS: {
+      if (!action.payload.success || !action.payload.data) {
+        return state
+          .set('status', '')
+          .set('error', action.payload.error)
+      }
+
+      const itemsRemoved = action.payload.data
+        ? (action.payload.data.items || [])
+        : [];
+
+      return state
+        .delete('map', binding => itemsRemoved.indexOf(binding.id) !== -1)
+        .set('status', '');
+    }
+
+    case actions.DELETE_BINDING_ERROR:
+    case actions.CREATE_BINDING_ERROR:
     case actions.EDIT_BINDING_ERROR:
     case actions.FETCH_BINDINGS_ERROR: {
       return state
         .set('status', '')
-        .set('error', action.payload.error);
+        .set('error', action.payload && action.payload.error
+          ? action.payload.error
+          : action.payload || 'Unexpected error'
+        );
     }
 
     default:

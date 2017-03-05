@@ -4,7 +4,7 @@
 
     position relative
     display block
-    width $cardWidth
+    width auto
     height $cardHeight
     padding 5px 15px
 
@@ -128,3 +128,6 @@
     &__cancel
         text-align center
         padding 15px 0
+
+    @media (min-width: $devices.ipad)
+        width 240px

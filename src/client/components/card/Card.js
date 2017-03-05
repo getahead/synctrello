@@ -13,7 +13,8 @@ class Card extends React.Component {
   static propTypes = {
     onSelect: React.PropTypes.func.isRequired,
     binding: React.PropTypes.object,
-    cards: React.PropTypes.object,
+    card: React.PropTypes.object,
+    cardBinded: React.PropTypes.object,
     boards: React.PropTypes.object.isRequired
   };
 
@@ -23,6 +24,7 @@ class Card extends React.Component {
     this.onWindowKeyUp = this.onWindowKeyUp.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.onRevert = this.onRevert.bind(this);
+    this.remove = this.remove.bind(this);
 
     this.state = {
       create: props.create,
@@ -33,6 +35,11 @@ class Card extends React.Component {
   onSelect(card) {
     this.props.onSelect(card);
     this.setState({create: false});
+  }
+
+  remove() {
+    this.props.onSelect();
+    this.setState({create: true, expand: false});
   }
 
   onRevert() {
@@ -66,14 +73,19 @@ class Card extends React.Component {
   }
 
   render() {
-    const {card, binding, boards} = this.props;
+    const {card, cardBinded, binding, boards} = this.props;
     const {expand, create} = this.state;
+
+    let exclude = [];
+    if (cardBinded) {
+      exclude = exclude.concat(cardBinded.id);
+    }
 
     if (create) {
       return (
         <div className="card">
-          <Search onSelect={this.onSelect}/>
-          {card && create === this.props.create &&
+          <Search onSelect={this.onSelect} exclude={exclude}/>
+          {card && create !== this.props.create &&
             <div className="card__cancel">
               <Button
                 label="Revert"
@@ -125,7 +137,7 @@ class Card extends React.Component {
                 </a>
                 <div
                   className="card__settings-item card__settings-item_red"
-                  onClick={() => this.setState({create: true, expand: false})}
+                  onClick={this.remove}
                 >
                   Remove card from binding
                 </div>

@@ -2,6 +2,7 @@ import './search.styl';
 
 import React from 'react';
 import {connect} from 'react-redux';
+import {List} from 'immutable';
 import enhanceWithClickOutside from 'react-click-outside';
 
 import {searchCard} from '../../../common/search/actions';
@@ -56,10 +57,18 @@ class Search extends React.Component {
   }
 
   responseHandler(response) {
+    const cards = this.filterCards(response.data.cards)
+
     this.setState({
       pending: false,
-      cards: response.data.cards || []
+      cards: cards.toArray()
     });
+  }
+
+  filterCards(cards) {
+    const {exclude} = this.props;
+    return List(cards)
+      .filter(card => !card.closed && exclude.indexOf(card.id) === -1)
   }
 
   errorHandler(response) {

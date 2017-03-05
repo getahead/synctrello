@@ -13,7 +13,8 @@
 
     &__logo
         float left
-        width 180px
+        width 40px
+        display none
 
         &-img
             display inline-block
@@ -22,11 +23,11 @@
 
     &__auth
         float right
-        width 180px
 
 
     &__items
-        margin 0 200px
+        margin 0
+        white-space nowrap
 
 
     &__auth &__item
@@ -39,6 +40,7 @@
         line-height 50px
         vertical-align middle
         color: $colors.gray
+        font-size 12px
 
         &:before
             display none
@@ -67,3 +69,15 @@
             &_name
                 max-width 120px
                 ellipsis()
+
+    @media(min-width: $devices.iphone6)
+        &__logo
+            display block
+
+        &__items
+            margin 0  60px
+
+    @media(min-width: $devices.iphoneLandscape)
+
+        &__item
+            font-size 14px
