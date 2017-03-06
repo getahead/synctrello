@@ -17,11 +17,11 @@ const rememberUser = (token = '') => {
 };
 
 const oAuthPopupOpen = (authorize, getUserInfo) => {
+  oAuthPopUp = windowOpen('', 'Sign in with Trello');
   authorize(document.location.origin)
     .then((res) => {
       if (res.value.success && res.value.data) {
-        oAuthPopUp = windowOpen(res.value.data.url, 'Sign in with Trello');
-
+        oAuthPopUp.location.href = res.value.data.url;
         function completeAuth(event){
           getUserInfo(event.data)
             .then(res => rememberUser(res.value.data.token))
