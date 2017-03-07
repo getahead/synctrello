@@ -1,5 +1,5 @@
 export const configureReporting = ({sentryUrl, unhandledRejection}) => {
-  if (!Raven) {
+  if (typeof Raven === 'undefined') {
     return;
   }
 
