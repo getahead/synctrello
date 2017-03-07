@@ -135,9 +135,6 @@ const makeConfig = (options) => {
               warnings: false,
             },
           }),
-          new webpack.SourceMapDevToolPlugin({
-            filename: '[file].map',
-          }),
           webpackIsomorphicToolsPlugin,
         );
       }

@@ -15,9 +15,9 @@ const app = express();
 
 app.disable('x-powered-by');
 app.enable('strict routing');
+app.set('trust proxy', true);
 
 if (config.isProduction) {
-  app.set('trust proxy', true);
   Raven.config(config.SENTRY_DSN).install();
   app.use(Raven.requestHandler());
 }
