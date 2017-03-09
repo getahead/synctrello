@@ -51,6 +51,30 @@
         padding 10px 0
         text-align center
 
+
+    &__demonstration
+        &-right
+            text-align center
+
+            &-img
+                max-width 80%
+
+    &__list
+        padding 0
+        margin 0
+        list-style-position inside
+        line-height 32px
+        font-size 16px
+
+
+    h3
+        padding 0
+        margin 15px 0
+        text-transform uppercase
+
+
+
+
     @media(min-width: $devices.ipad)
         font-size 16px
 
@@ -69,3 +93,13 @@
 
             &:active
                 color: $colors.blueDark
+
+        &__demonstration
+            &-right
+                float left
+                width 40%
+                text-align right
+
+            &-left
+                margin-left 40%
+                padding-left 20px

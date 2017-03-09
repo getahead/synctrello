@@ -25,16 +25,27 @@ const Home = (props, {router}) =>
     <div className="page__wrapper page__wrapper_color_blue">
       <div className="page__container">
         <div className="page__block">
-          <h3>How to synchronize cards using SyncTrello</h3>
-          <ol>
-            <li><Link to="/auth">Sign in</Link> with your existing Trello account</li>
-            <li>Select the boards in which you want to synchronize the cards</li>
-            <li>That is all. Go to Trello and make a card copy</li>
-          </ol>
-          <p>
-            Bindings create automatically on copying cards.
-            You can also create binding manually in your <Link to="/profile/cards">cabinet</Link>.
-          </p>
+          <div className="page__demonstration clearfix">
+            <div className="page__demonstration-right">
+              <img
+                className="page__demonstration-img"
+                src={require('./demonstration.gif')}
+                alt="Sync Trello cards - SyncTrello.com"
+              />
+            </div>
+            <div className="page__demonstration-left">
+              <h3>How to synchronize cards using SyncTrello</h3>
+              <ol className="page__list">
+                <li><Link to="/auth">Sign in</Link> with your existing Trello account</li>
+                <li>Select the boards in which you want to synchronize the cards</li>
+                <li>That is all. Go to Trello and make a card copy</li>
+              </ol>
+              <p>
+                Bindings create automatically on copying cards.
+                You can also create binding manually in your <Link to="/profile/cards">cabinet</Link>.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

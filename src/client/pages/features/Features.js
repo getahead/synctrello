@@ -1,5 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import {Link} from 'react-router';
 
 const Features = () =>
   <div className="page">
@@ -20,8 +21,28 @@ const Features = () =>
       <div className="page__block">
         <h3>One-way bindings</h3>
         <p>
-          In one-way bindings cards change in one direction only. These bindings may help you to organize thin and powerful
-          synchronizations between teams, share and update cards or anything you imagine.
+          In one-way bindings cards change in one direction only. These bindings may help you to organize thin and
+          powerful synchronizations between teams, share and update cards or anything you imagine.
+        </p>
+      </div>
+      <div className="page__block">
+        <h3>Automatic and manual synchronizations</h3>
+        <p>
+          Add bindings in automatic mode or create through the <Link to="/profile/cards">cabinet</Link>.
+        </p>
+      </div>
+      <div className="page__block">
+        <h3>Edit your existing bindings</h3>
+        <p>
+          You can manage synchronization settings at every time period.
+        </p>
+      </div>
+      <div className="page__block">
+        <h3>Create chains</h3>
+        <p>
+          One card can be synchronized with unlimited count of other cards. The others at the same time can have different
+          bindings. That feature provides you a powerful instrument for cards syncing. But be careful, it also can be
+          dangerous.
         </p>
       </div>
     </div>
