@@ -23,6 +23,7 @@ if (config.isProduction) {
 }
 app.use(serverUrlMiddleware);
 app.use(express.static('public'));
+app.use(express.static('static'));
 
 app.use(cookieParser());
 
