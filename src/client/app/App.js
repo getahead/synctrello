@@ -1,5 +1,6 @@
 import './base.styl';
 import './layout.styl';
+import './page.styl';
 
 import React from 'react';
 import {connect} from 'react-redux';
@@ -8,6 +9,9 @@ import {Match, Miss} from 'react-router';
 import {getUserInfo} from '../../common/auth/actions';
 
 import Home from '../pages/home/Home';
+import Faq from '../pages/faq/Faq';
+import Features from '../pages/features/Features';
+import Contacts from '../pages/contacts/Contacts';
 import Auth from '../pages/auth/Auth';
 import Profile from '../pages/profile/Profile';
 
@@ -51,6 +55,9 @@ class App extends React.Component {
           </div>
           <div className="layout__content">
             <Match pattern="/" exactly component={Home} />
+            <Match pattern="/faq" component={Faq} />
+            <Match pattern="/features" component={Features} />
+            <Match pattern="/contacts" component={Contacts} />
             <Match pattern="/auth" component={Auth} />
             <Match pattern="/profile" component={Profile} />
             <Miss component={NotFound} />

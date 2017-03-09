@@ -1,0 +1,71 @@
+.page
+    padding 10px 0
+
+
+    &__header
+        margin 0
+        padding 0 0 10px
+
+        font-size 48px
+        font-weight 800
+        letter-spacing -1.2px
+        text-transform uppercase
+
+
+    &__subheader
+        padding 0
+        margin 0
+        font-weight 400
+        font-size 20px
+        letter-spacing -.8px
+
+
+    &__note
+        padding 5px 0
+        color: $colors.gray
+
+    &__more
+        margin-top 5px
+        font-size 13px
+
+    &__container
+        max-width $contentWidth
+        padding 10px 15px
+        margin 0 auto
+
+        strong
+            font-weight 600
+
+        a
+            color: $colors.blue
+            text-decoration underline
+            -webkit-tap-highlight-color rgba(0, 0, 0, .1)
+
+
+    &__wrapper
+        &_color
+            &_blue
+                background-color: rgba($colors.blue, .1)
+
+    &__centered
+        padding 10px 0
+        text-align center
+
+    @media(min-width: $devices.ipad)
+        font-size 16px
+
+        &__header
+            font-size 48px
+            font-weight 800
+            letter-spacing -1.2px
+
+
+        &__container
+            padding 15px 15px
+
+        a
+            &:hover
+                text-decoration none
+
+            &:active
+                color: $colors.blueDark

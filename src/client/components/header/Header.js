@@ -30,11 +30,11 @@ const Header = ({isLoggedIn, profile}) =>
         <Link to="/" className="header__item" activeClassName="is-active" activeOnlyWhenExact>
           Home
         </Link>
+        <Link to="/features" className="header__item" activeClassName="is-active" activeOnlyWhenExact>
+          Features
+        </Link>
         <Link to="/faq" className="header__item" activeClassName="is-active" activeOnlyWhenExact>
           FAQ
-        </Link>
-        <Link to="/contacts" className="header__item" activeClassName="is-active" activeOnlyWhenExact>
-          Contact us
         </Link>
       </div>
     </div>
