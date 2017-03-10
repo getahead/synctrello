@@ -5,7 +5,9 @@ const Profile = Record({
   username: '',
   locale: '',
   idBoards: [],
-  avatar: ''
+  avatar: '',
+  bindingsCreate: '',
+  defaultBindings: ''
 }, 'user');
 
 export default Profile;
