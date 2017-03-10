@@ -12,6 +12,8 @@ export const GET_USER_INFO_START = 'GET_USER_INFO_START';
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS';
 export const GET_USER_INFO_ERROR = 'GET_USER_INFO_ERROR';
 
+export const LOGOUT = 'LOGOUT';
+
 export const getUserInfo = (token = '') => ({fetch}) => ({
   type: 'GET_USER_INFO',
   payload: {
@@ -26,4 +28,8 @@ export const trelloOauth = (origin = '') => ({fetch}) => ({
     promise: fetch(URI('/api/v1/auth/trello/').query({origin}))
       .then(res => res.json())
   }
+});
+
+export const logout = (origin = '') => ({fetch}) => ({
+  type: LOGOUT
 });

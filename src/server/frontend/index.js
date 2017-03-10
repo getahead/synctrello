@@ -37,7 +37,7 @@ const createStore = (req, res) => configureStore({
     config: initialState.config
       .set('sentryUrl', config.SENTRY_PUBLIC_DSN),
     auth: initialState.auth
-      .set('isLoggedIn', req.cookies && !!req.cookies.token)
+      .set('isLoggedIn', res.user.isLoggedIn)
       .set('token', req.cookies.token),
     boards: initialState.boards,
     device: {

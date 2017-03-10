@@ -36,6 +36,13 @@ const repositoriesReducer = (state = new State(), action = {}) => {
     }
 
     case actions.GET_USER_INFO_SUCCESS: {
+      if (!action.payload.success) {
+        return state
+          .set('error', action.payload.error)
+          .set('isLoggedIn', false)
+          .set('status', '');
+      }
+
       const profile = new Profile(action.payload.data.profile);
       const token = action.payload.data.token || state.get('token');
 
@@ -45,6 +52,10 @@ const repositoriesReducer = (state = new State(), action = {}) => {
         .set('isLoggedIn', true)
         .set('profile', profile)
         .set('token', token);
+    }
+
+    case actions.LOGOUT: {
+      return new State();
     }
 
     default:

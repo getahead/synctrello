@@ -9,18 +9,28 @@
     &__menu
         font-size 13px
 
+        &-right
+            float right
+            text-align right
 
         &-item
             display inline-block
             margin-right 30px
             line-height 32px
-            vertical-align center
+            vertical-align middle
             border-bottom 1px solid transparent
             color: $colors.gray
 
             &.is-active
                 color: $colors.black
                 border-bottom-color: $colors.black
+
+
+            &_logout
+                cursor pointer
+
+                &:hover
+                    color: $colors.red
 
 
     &__pages

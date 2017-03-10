@@ -3,21 +3,25 @@ import './profile-page.styl';
 import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Match, Link} from 'react-router';
+import cookie from 'react-cookie';
 import Helmet from 'react-helmet';
+
 import General from '../general/General';
 import Cards from '../cards/Cards';
 import Support from '../support/Support';
 
 import {fetchBoards} from '../../../common/boards/actions';
+import {logout} from '../../../common/auth/actions';
 
 class Profile extends React.Component {
   static propTypes = {
     isLoggedIn: React.PropTypes.bool.isRequired,
-    fetchBoards: React.PropTypes.func.isRequired
+    fetchBoards: React.PropTypes.func.isRequired,
+    logout: React.PropTypes.func.isRequired
   };
 
   static contextTypes = {
-    store: React.PropTypes.object,
+    router: React.PropTypes.object,
     serverFetchPromises: React.PropTypes.array
   };
 
@@ -36,6 +40,12 @@ class Profile extends React.Component {
     }
   }
 
+  logout(e) {
+    this.props.logout();
+    cookie.save('token', '', { path: '/' });
+    this.context.router.transitionTo('/');
+  }
+
   render() {
     const {isLoggedIn} = this.props;
 
@@ -48,6 +58,13 @@ class Profile extends React.Component {
         <Helmet title="Profile page | SyncTrello"/>
         <div className="profile-page__container">
           <div className="profile-page__menu">
+            <div className="profile-page__menu-right">
+              <span
+                className="profile-page__menu-item profile-page__menu-item_logout"
+                onClick={::this.logout}>
+                Logout
+              </span>
+            </div>
             <Link
               className="profile-page__menu-item"
               activeClassName="is-active"
@@ -103,4 +120,4 @@ class Profile extends React.Component {
 export default connect(state => ({
   isLoggedIn: state.auth.isLoggedIn,
   boards: state.boards.map
-}), {fetchBoards})(Profile);
+}), {fetchBoards, logout})(Profile);
