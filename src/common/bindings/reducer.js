@@ -59,7 +59,7 @@ const bindingsReducer = (state = new State(), action = {}) => {
         : [];
 
       return state
-        .delete('map', binding => itemsRemoved.indexOf(binding.id) !== -1)
+        .update('map', binding => binding.filter(it => itemsRemoved.indexOf(it.id) === -1))
         .set('status', '');
     }
 
