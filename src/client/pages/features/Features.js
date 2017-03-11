@@ -4,31 +4,30 @@ import {Link} from 'react-router';
 
 const Features = () =>
   <div className="page">
-    <Helmet title="Features - SyncTrello"/>
+    <Helmet title="SyncTrello Features - syncing cards, binding modes and linking cards configuration"/>
     <div className="page__container">
       <h1 className="page__header">Features</h1>
       <h2 className="page__subheader">
-        SyncTrello is a powerful tool for making thin-configured synchronizations.
+        SyncTrello is a powerful tool for configuring synchronizations in Trello.
       </h2>
-      <div className="page__block">
-        <h3>Double-way bindings</h3>
-        <p>
-          In 2-way bindings your cards become hard synchronized to each other.
-          Any changing of one cause the changing of the another. And changing of the second cause changing of the fist.
-          It is the most common type of binding.
-        </p>
-      </div>
       <div className="page__block">
         <h3>One-way bindings</h3>
         <p>
-          In one-way bindings cards change in one direction only. These bindings may help you to organize thin and
-          powerful synchronizations between teams, share and update cards or anything you imagine.
+          Cards with one-way bindings change in one direction only.
+          Share your card and everyone with a copy will get the latest updates from you.
         </p>
       </div>
       <div className="page__block">
-        <h3>Automatic and manual synchronizations</h3>
+        <h3>Two-way bindings</h3>
         <p>
-          Add bindings in automatic mode or create through the <Link to="/profile/cards">cabinet</Link>.
+          Two-way bound cards synchronize in both directions. Changes in one card will cause the change of another.
+        </p>
+      </div>
+      <div className="page__block">
+        <h3>Create and manage your bindings</h3>
+        <p>
+          Copy your card in Trello to start synchronization.
+          You also can create, view and manage your bindings in <Link to="/profile/cards">dashboard</Link>.
         </p>
       </div>
       <div className="page__block">
@@ -38,11 +37,11 @@ const Features = () =>
         </p>
       </div>
       <div className="page__block">
-        <h3>Create chains</h3>
+        <h3>Organize your workflow</h3>
         <p>
-          One card can be synchronized with unlimited count of other cards. The others at the same time can have different
-          bindings. That feature provides you a powerful instrument for cards syncing. But be careful, it also can be
-          dangerous.
+          <strong>SyncTrello</strong> supports unlimited the number of synced cards.
+          Create as many copies as you like, design complex synchronization chains using all types of bindings
+          and build a powerful tool for collaboration.
         </p>
       </div>
     </div>

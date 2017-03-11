@@ -6,20 +6,20 @@ import Button from '../../components/button/Button';
 
 const Home = (props, {router}) =>
   <div className="page">
-    <Helmet title="SyncTrello - synchronization of Trello cards across boards and even more"/>
+    <Helmet title="SyncTrello - synchronization of Trello cards between lists and boards"/>
     <div className="page__container">
       <h1 className="page__header">Sync Trello</h1>
-      <h2 className="page__subheader">Easily synchronize your Trello cards even across boards</h2>
+      <h2 className="page__subheader">Easily synchronize your Trello cards between lists and boards</h2>
       <div className="page__block">
         <p>
-         <strong>SyncTrello</strong> is the only one service for configurable cards synchronization.
-          It allows you to get cards synced across lists and boards in two clicks.
+         <strong>SyncTrello</strong> is the only service which allows you to create synchronized cards
+          in just two clicks.
         </p>
         <p>
-          <strong>SyncTrello</strong> provides 2 types of synchronization: <strong>one-way and double-way bindings</strong>.
-          You can toggle between the types or completely disable any synchronization whenever you wish.
+          Share your card with coworkers and deliver updates with <strong>one-way bindings</strong>.<br />
+          Collaborate with your team using <strong>two-way synchronization</strong>.
         </p>
-        <div className="page__more">Read more about all <Link to="/features">features</Link></div>
+        <div className="page__more">More <Link to="/features">features</Link></div>
       </div>
     </div>
     <div className="page__wrapper page__wrapper_color_blue">

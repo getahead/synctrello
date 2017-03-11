@@ -1,23 +1,28 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import {Link} from 'react-router';
 
 const Faq = () =>
   <div className="page">
-    <Helmet title="FAQ - SyncTrello"/>
+    <Helmet title="FAQ SyncTrello - How to link cards in Trello"/>
     <div className="page__container">
       <h1 className="page__header">FAQ</h1>
 
       <div className="page__block">
         <h3 className="page__block-question">How does the syncing work?</h3>
         <p>
-          SyncTrello gets notifications about changes on your board. We match a bound card and apply changes for it. All the process usually takes less than a second.
+          SyncTrello gets notifications about changes on your board. We match a bound card and apply changes for it.
+          The whole process usually takes less than a second.
         </p>
       </div>
 
       <div className="page__block">
         <h3 className="page__block-question">How do bindings create?</h3>
         <p>
-          SyncTrello gets notifications on copy card actions and create a binding. You can also create a binding manually in your cabinet. If you prefer the manual binding creation to the automatic, you can always switch between modes in your settings.
+          <strong>SyncTrello</strong> gets notifications on copy card actions and create a binding.
+          You can also create a binding manually in your <Link to="/profile/cards">dashboard</Link>.
+          If you prefer the manual binding creation to the automatic,
+          you can always switch between modes in your settings.
         </p>
       </div>
 
@@ -38,7 +43,9 @@ const Faq = () =>
       <div className="page__block">
         <h3 className="page__block-question">What are one-way and double-ways bindings?</h3>
         <p>
-          In double-ways bindings cards sync in both sides. In one-way bindings cards synchronise only by one way. You can switch between the binding modes for each of binding you created in your cabinet. You are also allowed to set default binding mode for new pairs in your settings.
+          In double-ways bindings cards sync in both sides. In one-way bindings cards synchronise only by one direction.
+          You can switch between the binding modes for each of a pair you created in your <Link to="/profile/cards">cards list</Link>.
+          You are also allowed to set default binding mode for new pairs in your settings.
         </p>
       </div>
 
