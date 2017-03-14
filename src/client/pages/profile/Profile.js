@@ -55,7 +55,7 @@ class Profile extends React.Component {
 
     return (
       <div className="profile-page">
-        <Helmet title="Profile page | SyncTrello"/>
+        <Helmet title="Settings - SyncTrello"/>
         <div className="profile-page__container">
           <div className="profile-page__menu">
             <div className="profile-page__menu-right">

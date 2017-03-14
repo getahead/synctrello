@@ -34,7 +34,7 @@ const Faq = () =>
       </div>
 
       <div className="page__block">
-        <h3 className="page__block-question">What kind of data does SyncTrello synchronise?</h3>
+        <h3 className="page__block-question">What kind of data does SyncTrello synchronize?</h3>
         <p>
           SyncTrello can sync cardnames, cards descriptions, due dates.
         </p>
@@ -43,7 +43,7 @@ const Faq = () =>
       <div className="page__block">
         <h3 className="page__block-question">What are one-way and double-ways bindings?</h3>
         <p>
-          In double-ways bindings cards sync in both sides. In one-way bindings cards synchronise only by one direction.
+          In double-ways bindings cards sync in both sides. In one-way bindings cards synchronize only by one direction.
           You can switch between the binding modes for each of a pair you created in your <Link to="/profile/cards">cards list</Link>.
           You are also allowed to set default binding mode for new pairs in your settings.
         </p>

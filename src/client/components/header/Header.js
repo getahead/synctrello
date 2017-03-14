@@ -11,7 +11,12 @@ const Header = ({isLoggedIn, profile}) =>
     <div className="header__container">
       <div className="header__logo">
         <Link to="/" className="header__item">
-          <img src={require('./logo.svg')} className="header__logo-img" alt="Git starter" />
+          <img
+            src={require('./logo.svg')}
+            className="header__logo-img"
+            alt="SyncTrello - sync trello cards between boards"
+            title="SyncTrello - Home"
+          />
         </Link>
       </div>
 

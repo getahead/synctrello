@@ -6,7 +6,10 @@ import Button from '../../components/button/Button';
 
 const Home = (props, {router}) =>
   <div className="page">
-    <Helmet title="SyncTrello - synchronization of Trello cards between lists and boards"/>
+    <Helmet
+      title="SyncTrello - synchronization of Trello cards between lists and boards"
+      meta={[{name: 'description', content: 'Trello cards synchronization between lists and boards'}]}
+    />
     <div className="page__container">
       <h1 className="page__header">Sync Trello</h1>
       <h2 className="page__subheader">Easily synchronize your Trello cards between lists and boards</h2>
