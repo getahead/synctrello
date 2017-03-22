@@ -91,6 +91,7 @@ const renderHtml = (state, bodyMarkupWithHelmet) => {
       appCssFilename={appCssFilename}
       bodyHtml={`<div id="app">${bodyMarkup}</div>${scriptsMarkup}`}
       googleAnalyticsId={config.googleAnalyticsId}
+      yaMetrikaId={config.yaMetrikaId}
       helmet={helmet}
       isProduction={config.isProduction}
     />,

@@ -1,5 +1,6 @@
 {
   "googleAnalyticsId": "UA-XXXXXXX-X",
+  "yaMetrikaId": null,
 
   "API": "https://api.synctrello.com/",
   "productionUrl": "https://synctrello.com",

@@ -22,6 +22,7 @@ const Html = ({
   bodyHtml,
   googleAnalyticsId,
   helmet,
+  yaMetrikaId,
   isProduction,
 }) => (
   <html {...helmet.htmlAttributes.toComponent()}>
@@ -43,6 +44,43 @@ const Html = ({
     }
     {isProduction && googleAnalyticsId !== 'UA-XXXXXXX-X' &&
     <GoogleAnalytics id={googleAnalyticsId} />
+    }
+    {yaMetrikaId &&
+      <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `
+        (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+          try {
+            w.yaCounter43637184 = new Ya.Metrika({
+              id:${yaMetrikaId},
+              clickmap:true,
+              trackLinks:true,
+              accurateTrackBounce:true,
+              webvisor:true,
+              trackHash:true
+            });
+          } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+          d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");`
+      }}
+      />
+    }
+    {yaMetrikaId &&
+      <noscript>
+        <div>
+          <img src={`https://mc.yandex.ru/watch/${yaMetrikaId}`} style="position:absolute; left:-9999px;" alt=""/>
+        </div>
+      </noscript>
     }
   </head>
   <body
