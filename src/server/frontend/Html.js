@@ -78,7 +78,7 @@ const Html = ({
     {yaMetrikaId &&
       <noscript>
         <div>
-          <img src={`https://mc.yandex.ru/watch/${yaMetrikaId}`} style="position:absolute; left:-9999px;" alt=""/>
+          <img src={`https://mc.yandex.ru/watch/${yaMetrikaId}`} style={{position: 'absolute', left: '-9999px'}} />
         </div>
       </noscript>
     }
