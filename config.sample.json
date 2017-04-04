@@ -1,19 +1,11 @@
 {
   "googleAnalyticsId": "UA-XXXXXXX-X",
-  "yaMetrikaId": 43637184,
+  "yaMetrikaId": "",
 
-  "API": "https://api.synctrello.com/",
-  "productionUrl": "https://synctrello.com",
-  "cookieSecret": "front-syncTrello-2411989-secret",
+  "API": "http://localhost:3001",
+  "productionUrl": "http://localhost:3000",
+  "cookieSecret": "some-secret",
 
-  "SENTRY_DSN": "https://4b3c98405d1246adb3ddf65fa98a0f33:f1fc78bd86254939bdf79d6a4f029586@sentry.io/140359",
-  "SENTRY_PUBLIC_DSN": "https://4b3c98405d1246adb3ddf65fa98a0f33@sentry.io/140359",
-
-  "mongo": {
-    "host": "5.101.117.249",
-    "port": "27017",
-    "database": "synctrello",
-    "user": "syncTrelloAdmin",
-    "pwd": "syncTrelloAdminPassword"
-  }
+  "SENTRY_DSN": "",
+  "SENTRY_PUBLIC_DSN": ""
 }
