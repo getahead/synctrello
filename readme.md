@@ -1,3 +1,6 @@
+# SyncTrello 
+[synctrello.com](https://synctrello.com)
+
 # PREPARING
 Firstly install [node.js](nodejs.org) or update it to v7
  
